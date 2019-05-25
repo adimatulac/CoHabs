@@ -10,29 +10,43 @@ Web application project for CPSC 436I.
 
 1. Base functionalities
    - Authentiation
+   ```
      - Sign-up
      - Create/make profile
+     ```
    - Groups
+   ```
      - Create groups
      - View members
+     ```
    - Tasks
+   ```
      - Post/Edit/Delete Todo and board (schedules/tasks/bills)
      - View Todo and board (schedules/tasks/bills)
+     ```
      
      
 2. Important feactures 
    - Authentiation
+   ```
      - Log-in/reset password
+     ```
    - Groups
+   ```
      - Sending invites to join a group
      - Joining a group
+     ```
    - Tasks
+   ```
      - Assigning tasks to roommates
+     ```
 
 3. Extras
    - Tasks
+   ```
      - Send email notification/reminders
      - Rotating tasks among assignees based on user input 
+     ```
   
 ## Design
 
