@@ -9,7 +9,7 @@ Web application project for CPSC 436I.
 ## In Development 
 
 1. Base functionalities
-   - Authentiation
+   - Authentication
    ```
      - Sign-up
      - Create/make profile
@@ -27,7 +27,7 @@ Web application project for CPSC 436I.
      
      
 2. Important feactures 
-   - Authentiation
+   - Authentication
    ```
      - Log-in/reset password
      ```
