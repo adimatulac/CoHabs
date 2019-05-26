@@ -26,7 +26,7 @@ Web application project for CPSC 436I.
      ```
      
      
-2. Important feactures 
+2. Important features 
    - Authentication
    ```
      - Log-in/reset password
