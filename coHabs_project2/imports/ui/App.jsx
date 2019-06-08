@@ -3,6 +3,8 @@ import Hello from './Hello.jsx';
 import Info from './Info.jsx';
 import Item from './Item.jsx';
 import AddItem from './AddItem.jsx';
+import HeaderBar from './HeaderBar.jsx';
+import Welcome from './Welcome.jsx';
 
 class App extends Component {
   state = {
@@ -37,10 +39,10 @@ class App extends Component {
   render() {
     return (
     <div className="App">
-     <h1> CoHabs Board  !</h1>
-     <p> Welcome Jess :) </p>
-     <Item  deleteItem = { this.deleteItem} list= { this.state.list } />
-     <AddItem addItem= { this.addItem } />
+      <HeaderBar />
+      <Welcome />
+      <Item  deleteItem = { this.deleteItem} list= { this.state.list } />
+      <AddItem addItem= { this.addItem } />
     </div>
      );
   }

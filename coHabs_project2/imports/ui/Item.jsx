@@ -18,17 +18,25 @@ const Item = ({list, deleteItem }) => {
 
     const listArray = list.map(item => {
         return (
-            <div className="item" key = { item.id }>
-                <div>Name: { item.name } </div>
-                <div> Type: { item.type } </div>
-                <div> Message: { item.message } </div>
-                <button onClick={ () => {deleteItem(item.id)} }> Delete item </button>
+            <div class ="col-sm">
+                <div className="card">
+                    <div class="card-body">
+                    <div className="item" key = { item.id }>
+                        <div className="card-title">Name: <span className="card-text">{ item.name }</span></div>
+                        <div> Type: { item.type } </div>
+                        <div> Message: { item.message } </div>
+                        <button type="button" className="btn btn-primary btn-sm" onClick={ () => {deleteItem(item.id)} }> Delete item </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     })
     return(
-        <div className="Item-list">
+        <div className="Item-list container">
+            <div className="row justify-content-md-center">
             { listArray } 
+            </div>
         </div>
     )
     
