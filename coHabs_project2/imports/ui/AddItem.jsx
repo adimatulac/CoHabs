@@ -18,15 +18,21 @@ class AddItem extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
                     <label htmlFor="name"> Name: </label>
-                    <input type="text" id="name" onChange={this.handleChannge}/>
+                    <input type="text" id="name" className="form-control" onChange={this.handleChannge}/>
+                    </div>
+                    <div className="form-group">
                     <label htmlFor="name"> Age: </label>
-                    <input type="text" id="type" onChange={this.handleChannge}/>
+                    <input type="text" id="type" className="form-control" onChange={this.handleChannge}/>
+                    </div>
+                    <div className="form-group">
                     <label htmlFor="name"> Message: </label>
-                    <input type="text" id="message" onChange={this.handleChannge}/>
-                    <button> Submit </button>
+                    <input type="text" id="message" className="form-control" onChange={this.handleChannge}/>
+                    </div>
+                    <button type="button" className="btn btn-primary"> Submit </button>
                 </form>
             </div>
         )
