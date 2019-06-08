@@ -1,5 +1,5 @@
 {
-  "name": "CoHabs",
+  "name": "coHabs_project2",
   "private": true,
   "scripts": {
     "start": "meteor run",

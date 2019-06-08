@@ -1,9 +1,9 @@
 import assert from "assert";
 
-describe("CoHabs", function () {
+describe("coHabs_project2", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
-    assert.strictEqual(name, "CoHabs");
+    assert.strictEqual(name, "coHabs_project2");
   });
 
   if (Meteor.isClient) {
