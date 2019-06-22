@@ -18,6 +18,8 @@ import NotesList from '../containers/NotesList';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
 
 const drawerWidth = 240;
 
@@ -53,7 +55,9 @@ export default function ClippedDrawer() {
           <Typography variant="h6" noWrap>
             CoHabs
           </Typography>
+           
         </Toolbar>
+        
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -88,6 +92,16 @@ export default function ClippedDrawer() {
             </ListItemIcon>
             <ListItemText primary="Household" />
           </ListItem>
+          
+
+          <ListItem >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div>
+            <AccountsUIWrapper align="center" /></div>
+        </div>
+          </ListItem>
+
+
         </List>
       </Drawer>
       <main className={classes.content}>

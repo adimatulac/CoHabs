@@ -5,6 +5,8 @@ import AddNote from '../containers/AddNote';
 import NotesList from '../containers/NotesList';
 // import { connect } from 'react-redux';
 // import { fetchAllPokemon } from '../actions';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
 
 class App extends React.Component {
   
@@ -29,6 +31,7 @@ class App extends React.Component {
           </div>
         <NotesList />
         </div> */}
+        
       </div>
   );
   }

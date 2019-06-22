@@ -12,16 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../imports/index.css';
 import rootReducer from '../imports/reducers'; 
 import { fetchAllNotes } from '../imports/actions/index';
+import '../imports/startup/accounts-config.js';
+
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllNotes());
 console.log('dispatching action ...');
 
-// ReactDOM.render(
-// 	<Provider store={store}>
-// 		<App />
-// 	</Provider>, 
-// 	document.getElementById('root'));
 
 Meteor.startup(() => {
   render(<Provider store={store}>
