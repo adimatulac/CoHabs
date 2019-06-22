@@ -41,15 +41,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HeaderBar />
+        <HeaderBar /> 
+        
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div>
+            <AccountsUIWrapper align="center" /></div>
+        </div> 
+        
         <Welcome />
         <Item deleteItem={this.deleteItem} list={this.state.list} />
         <AddItem addItem={this.addItem} />
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div>
-            <AccountsUIWrapper align="center" /></div>
-        </div>
+        
 
       </div>
     );
