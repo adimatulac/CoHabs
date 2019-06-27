@@ -9,7 +9,6 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 
 class App extends React.Component {
-  
   // componentDidMount() {
   //   this.props.dispatch(fetchAllPokemon);
   // }
@@ -19,7 +18,9 @@ class App extends React.Component {
     console.log(this.props);
     return (
       <div>
+        
         <Main />
+        
         {/* <div className="container">
           <Header />
           <div className="row">

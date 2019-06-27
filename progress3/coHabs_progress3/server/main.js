@@ -5,6 +5,8 @@ function insertLink(title, url) {
   Links.insert({ title, url, createdAt: new Date() });
 }
 
+PlayersList = new Mongo.Collection('players');
+
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.
   if (Links.find().count() === 0) {
@@ -29,3 +31,7 @@ Meteor.startup(() => {
     );
   }
 });
+
+if(Meteor.isServer){
+  console.log("Hello server");
+}

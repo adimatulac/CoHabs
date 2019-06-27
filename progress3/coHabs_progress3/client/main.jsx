@@ -19,9 +19,16 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllNotes());
 console.log('dispatching action ...');
 
+PlayersList = new Mongo.Collection('players');
+PlayersList.insert({ name: "David", score: 0 });
 
 Meteor.startup(() => {
   render(<Provider store={store}>
 		<App />
 	</Provider>, document.getElementById('react-target'));
 });
+
+
+if(Meteor.isClient){
+	console.log("Hello Client");
+  }
