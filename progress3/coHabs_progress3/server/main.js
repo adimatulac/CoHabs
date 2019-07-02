@@ -5,7 +5,7 @@ function insertLink(title, url) {
   Links.insert({ title, url, createdAt: new Date() });
 }
 
-PlayersList = new Mongo.Collection('players');
+NotesList = new Mongo.Collection('notes');
 
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.
@@ -33,5 +33,8 @@ Meteor.startup(() => {
 });
 
 if(Meteor.isServer){
-  console.log("Hello server");
+
+  Meteor.publish('theNotes', function(){
+    return NotesList.find();
+  });
 }

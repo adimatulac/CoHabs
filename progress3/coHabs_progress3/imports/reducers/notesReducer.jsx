@@ -25,6 +25,9 @@ function addNote(notes, newNote) {
 	newNote['id'] = id;
 	let newList = notes;
 	return newList.concat(newNote);
+
+	
+	// PlayersList.insert({ name: "David", score: 0 });
 }
 
 function deleteNote(notes, givenID) {

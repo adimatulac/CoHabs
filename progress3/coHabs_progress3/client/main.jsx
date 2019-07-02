@@ -19,8 +19,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllNotes());
 console.log('dispatching action ...');
 
-PlayersList = new Mongo.Collection('players');
-PlayersList.insert({ name: "David", score: 0 });
+NotesList = new Mongo.Collection('notes');
 
 Meteor.startup(() => {
   render(<Provider store={store}>
@@ -30,5 +29,6 @@ Meteor.startup(() => {
 
 
 if(Meteor.isClient){
-	console.log("Hello Client");
+	Meteor.subscribe('theNotes');
+
   }
