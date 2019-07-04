@@ -13,12 +13,13 @@ import HomeIcon from '@material-ui/icons/HomeRounded';
 import AssignmentIcon from '@material-ui/icons/AssignmentRounded';
 import EventIcon from '@material-ui/icons/EventRounded';
 import GroupIcon from '@material-ui/icons/GroupRounded';
-import AddNote from '../containers/AddNote';
 import NotesList from '../containers/NotesList';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import { Meteor } from 'meteor/meteor';
+import InputForm from './InputForm';
 
 
 const drawerWidth = 240;
@@ -46,7 +47,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function ClippedDrawer() {
   const classes = useStyles();
-
+  
+ 
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -100,10 +102,27 @@ export default function ClippedDrawer() {
             <AccountsUIWrapper align="center" /></div>
         </div>
           </ListItem>
-
-
         </List>
-      </Drawer>
+        </Drawer>
+        {Meteor.userId() == null ? 
+          <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Container>
+          <Row>
+            <div className="col" align="center">
+              <div className="col-shrink">
+              <ListItem >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div>
+            <AccountsUIWrapper align="center" /></div>
+        </div>
+          </ListItem>
+              </div>
+            </div>
+          </Row>
+        </Container>
+      </main>
+       :
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Container>
@@ -111,12 +130,13 @@ export default function ClippedDrawer() {
           <Row>
             <div className="col" align="center">
               <div className="col-shrink">
-                <AddNote />
+                <InputForm />
               </div>
             </div>
           </Row>
         </Container>
       </main>
+        }
     </div>
   );
 }

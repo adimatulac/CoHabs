@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Note from '../ui/Note';
-import { deleteNote } from '../actions';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +7,8 @@ import Fab from '@material-ui/core/Fab';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Notes from '../api/notes';
+import { withTracker } from 'meteor/react-meteor-data';
 
 class NotesList extends React.Component {
     constructor(props) {
@@ -30,6 +29,9 @@ class NotesList extends React.Component {
     handleShow() {
         console.log('button works!');
         this.setState({ show: true });
+    };
+    onDelete = (id) => {
+        Notes.remove(id);
     };
 
     render() {
@@ -59,7 +61,7 @@ class NotesList extends React.Component {
                         {this.props.notes.map(note => {
                             return (
                                 <Col md="auto" className="px-2 mb-3" key={ note.id }>
-                                    <Note note={ note } onDelete={ this.props.onDelete } />
+                                    <Note note={ note } onDelete={ this.onDelete } />
                                 </Col>
                             );
                         })}
@@ -71,27 +73,15 @@ class NotesList extends React.Component {
                             </Card>
                         </Col>
                     </Row>
-                    {/* <Fab className="fab" color="primary" aria-label="Add">
-                        <AddIcon />
-                    </Fab> */}
                 </Container>
             );
         }
     }
 }
 
-const mapStateToProps = (state) => {
-    return  {
-        notes: state.notes
-    };
-}
-
-const mapDispatchToProps = (dispatch) => {
+export default InfoContainer = withTracker(() => {
+    const todosHandle = Meteor.subscribe('notes.public');
     return {
-        onDelete: (id) => {
-            dispatch(deleteNote(id));
-        }
+      notes: Notes.find().fetch(),
     };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
+  })(NotesList);
