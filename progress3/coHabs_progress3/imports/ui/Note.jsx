@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ClearIcon from '@material-ui/icons/ClearRounded';
 import Container from 'react-bootstrap/Container';
 import IconButton from '@material-ui/core/IconButton';
-import Notes from '../api/notes';
+
 const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
@@ -40,13 +40,7 @@ export default ({ note: { id, message, type, date, _id }, onDelete }) => {
                     <h6 className="card-title">type: <span className="p-unbolded">{ type }</span></h6>
                     <h6 className="card-title">date: <span className="p-unbolded">{ date }</span></h6>
                 </Card.Text>
-                {/* <Container style={{ position: 'absolute', bottom: '0', right: '0', paddingTop: '10px', paddingBottom: '10px' }}>
-                    <IconButton>
-                        <ClearIcon button className={classes.iconHover} color="error" onClick={() => onDelete(id)}/>
-                    </IconButton>
-                </Container> */}
-                {/* <Button variant="contained" color="primary" onClick={() => onDelete(id)}>delete</Button> */}
-            </Card.Body>
+                </Card.Body>
             <Card.Footer style={{ textAlign: 'right' }}>
                 <small className="text-muted">Jessica</small>
             </Card.Footer>

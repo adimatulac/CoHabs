@@ -1,8 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Note from '../ui/Note';
-import { deleteNote } from '../actions';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Card from 'react-bootstrap/Card';
@@ -11,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Notes from '../api/notes';
-import NoteContainer from '../containers/noteContainer';
 import { withTracker } from 'meteor/react-meteor-data';
 
 class NotesList extends React.Component {
@@ -77,38 +73,15 @@ class NotesList extends React.Component {
                             </Card>
                         </Col>
                     </Row>
-                    {/* <Fab className="fab" color="primary" aria-label="Add">
-                        <AddIcon />
-                    </Fab> */}
                 </Container>
             );
         }
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return  {
-//         notes: state.notes
-//     };
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onDelete: (id) => {
-//             dispatch(deleteNote(id));
-//         }
-//     };
-// };
-
 export default InfoContainer = withTracker(() => {
-    console.log("hello");
     const todosHandle = Meteor.subscribe('notes.public');
-    const loading = todosHandle.ready();
-    console.log(loading);
     return {
       notes: Notes.find().fetch(),
     };
   })(NotesList);
-
-//export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
-//export const connect(mapDispatchToProps)(NotesList);

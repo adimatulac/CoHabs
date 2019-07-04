@@ -13,14 +13,14 @@ import HomeIcon from '@material-ui/icons/HomeRounded';
 import AssignmentIcon from '@material-ui/icons/AssignmentRounded';
 import EventIcon from '@material-ui/icons/EventRounded';
 import GroupIcon from '@material-ui/icons/GroupRounded';
-import AddNote from '../containers/AddNote';
 import NotesList from '../containers/NotesList';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
-import NoteContainer from '../containers/noteContainer'
+import InputForm from './InputForm';
+
 
 const drawerWidth = 240;
 
@@ -130,7 +130,7 @@ export default function ClippedDrawer() {
           <Row>
             <div className="col" align="center">
               <div className="col-shrink">
-                <AddNote />
+                <InputForm />
               </div>
             </div>
           </Row>
