@@ -10,6 +10,9 @@ import Fab from '@material-ui/core/Fab';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Notes from '../api/notes';
+import NoteContainer from '../containers/noteContainer';
+import { withTracker } from 'meteor/react-meteor-data';
 
 class NotesList extends React.Component {
     constructor(props) {
@@ -30,6 +33,9 @@ class NotesList extends React.Component {
     handleShow() {
         console.log('button works!');
         this.setState({ show: true });
+    };
+    onDelete = (id) => {
+        Notes.remove(id);
     };
 
     render() {
@@ -59,7 +65,7 @@ class NotesList extends React.Component {
                         {this.props.notes.map(note => {
                             return (
                                 <Col md="auto" className="px-2 mb-3" key={ note.id }>
-                                    <Note note={ note } onDelete={ this.props.onDelete } />
+                                    <Note note={ note } onDelete={ this.onDelete } />
                                 </Col>
                             );
                         })}
@@ -80,18 +86,29 @@ class NotesList extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return  {
-        notes: state.notes
-    };
-}
+// const mapStateToProps = (state) => {
+//     return  {
+//         notes: state.notes
+//     };
+// }
 
-const mapDispatchToProps = (dispatch) => {
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onDelete: (id) => {
+//             dispatch(deleteNote(id));
+//         }
+//     };
+// };
+
+export default InfoContainer = withTracker(() => {
+    console.log("hello");
+    const todosHandle = Meteor.subscribe('notes.public');
+    const loading = todosHandle.ready();
+    console.log(loading);
     return {
-        onDelete: (id) => {
-            dispatch(deleteNote(id));
-        }
+      notes: Notes.find().fetch(),
     };
-};
+  })(NotesList);
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
+//export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
+//export const connect(mapDispatchToProps)(NotesList);

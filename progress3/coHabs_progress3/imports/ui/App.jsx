@@ -14,8 +14,8 @@ class App extends React.Component {
   // }
   render() {
     console.log('running app ...');
-    console.log(this.state);
-    console.log(this.props);
+    // console.log(this.state);
+    // console.log(this.props);
     return (
       <div>
         

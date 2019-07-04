@@ -1,40 +1,41 @@
 import { Meteor } from 'meteor/meteor';
-import Links from '/imports/api/links';
+import Notes from '../imports/api/notes'
 
-function insertLink(title, url) {
-  Links.insert({ title, url, createdAt: new Date() });
-}
+// function insertLink(title, url) {
+//   Notes.insert({ title, url, createdAt: new Date() });
+// }
 
-NotesList = new Mongo.Collection('notes');
+// NotesList = new Mongo.Collection('notes');
+
 
 Meteor.startup(() => {
+  //Notes.insert({name: "jess"});
+  console.log(Notes.find().fetch());
   // If the Links collection is empty, add some data.
-  if (Links.find().count() === 0) {
-    insertLink(
-      'Do the Tutorial',
-      'https://www.meteor.com/tutorials/react/creating-an-app'
-    );
+  // if (Notes.find().count() === 0) {
+  //   insertLink(
+  //     'Do the Tutorial',
+  //     'https://www.meteor.com/tutorials/react/creating-an-app'
+  //   );
 
-    insertLink(
-      'Follow the Guide',
-      'http://guide.meteor.com'
-    );
+  //   insertLink(
+  //     'Follow the Guide',
+  //     'http://guide.meteor.com'
+  //   );
 
-    insertLink(
-      'Read the Docs',
-      'https://docs.meteor.com'
-    );
+  //   insertLink(
+  //     'Read the Docs',
+  //     'https://docs.meteor.com'
+  //   );
 
-    insertLink(
-      'Discussions',
-      'https://forums.meteor.com'
-    );
-  }
+  //   insertLink(
+  //     'Discussions',
+  //     'https://forums.meteor.com'
+  //   );
+  // }
 });
 
-if(Meteor.isServer){
 
-  Meteor.publish('theNotes', function(){
-    return NotesList.find();
-  });
-}
+Meteor.publish('notes.public', function() {
+  return Notes.find({});
+});

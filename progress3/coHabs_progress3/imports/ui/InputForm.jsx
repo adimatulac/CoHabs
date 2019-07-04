@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Notes from '../api/notes';
 class InputForm extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +27,9 @@ class InputForm extends React.Component {
             console.log(this.props);
             console.log('adding note ...')
             console.log(this.state);
-            this.props.onAddNote(this.state);
+            // THIS LINE IS ADDED
+            Notes.insert(this.state);
+            // this.props.onAddNote(this.state);
             this.handleClear();
         }
     }

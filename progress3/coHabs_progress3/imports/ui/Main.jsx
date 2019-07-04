@@ -20,7 +20,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
-
+import NoteContainer from '../containers/noteContainer'
 
 const drawerWidth = 240;
 

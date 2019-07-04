@@ -14,12 +14,12 @@ import rootReducer from '../imports/reducers';
 import { fetchAllNotes } from '../imports/actions/index';
 import '../imports/startup/accounts-config.js';
 
-
+// NotesList = new Mongo.Collection('notes');
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchAllNotes());
 console.log('dispatching action ...');
 
-NotesList = new Mongo.Collection('notes');
+
 
 Meteor.startup(() => {
   render(<Provider store={store}>

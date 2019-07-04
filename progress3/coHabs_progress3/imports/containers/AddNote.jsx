@@ -5,6 +5,7 @@ import InputForm from '../ui/InputForm';
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddNote: (note) => {
+            
             dispatch(addNote(note));
         }
     };
