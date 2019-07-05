@@ -22,7 +22,7 @@ import { Meteor } from 'meteor/meteor';
 import InputForm from './InputForm';
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +57,10 @@ export default function ClippedDrawer() {
           <Typography variant="h6" noWrap>
             CoHabs
           </Typography>
-           
+          <div className="toolbar-buttons" style={{ marginRight: 'auto' }}>
+          <div>
+            <AccountsUIWrapper /></div>
+          </div>
         </Toolbar>
         
       </AppBar>
@@ -96,12 +99,12 @@ export default function ClippedDrawer() {
           </ListItem>
           
 
-          <ListItem >
+          {/* <ListItem >
           <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div>
             <AccountsUIWrapper align="center" /></div>
         </div>
-          </ListItem>
+          </ListItem> */}
         </List>
         </Drawer>
         {Meteor.userId() == null ? 
@@ -127,13 +130,6 @@ export default function ClippedDrawer() {
         <div className={classes.toolbar} />
         <Container>
           <NotesList />
-          <Row>
-            <div className="col" align="center">
-              <div className="col-shrink">
-                <InputForm />
-              </div>
-            </div>
-          </Row>
         </Container>
       </main>
         }
