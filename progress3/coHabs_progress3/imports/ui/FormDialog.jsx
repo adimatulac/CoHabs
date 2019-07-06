@@ -29,7 +29,7 @@ class FormDialog extends React.Component {
       message: '',
       type: '',
       date: '',
-      user: ''
+      username: ''
     }
   }
 
@@ -48,7 +48,8 @@ class FormDialog extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
+        username: Meteor.user().username
     });
   };
 
@@ -73,7 +74,7 @@ class FormDialog extends React.Component {
         console.log(this.props);
         console.log('adding note ...')
         console.log(this.state);
-        // console.log(Meteor.user());
+        console.log(Meteor.user().username);
         Notes.insert(this.state);
         // this.props.onAddNote(this.state);
         this.handleClose();

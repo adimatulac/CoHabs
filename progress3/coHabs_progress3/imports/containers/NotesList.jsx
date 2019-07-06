@@ -1,15 +1,10 @@
 import React from 'react';
 import Note from '../ui/Note';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import Card from 'react-bootstrap/Card';
-import Fab from '@material-ui/core/Fab';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Notes from '../api/notes';
 import { withTracker } from 'meteor/react-meteor-data';
-import FormDialog from '../ui/FormDialog';
 
 class NotesList extends React.Component {
     constructor(props) {
@@ -42,28 +37,16 @@ class NotesList extends React.Component {
 
         if (this.props.notes.length === 0) {
             return (
-                <div className="card text-white bg-danger mb-3">
+                <div className="card text-white bg-light mb-3">
                     <div className="card-body">
-                        <h5 className="card-title">Whoah!</h5>
-                        <p className="card-text">No notes in records.</p>
+                        <h5 className="card-title" style={{ color: '#808080' }}>Whoah!</h5>
+                        <p className="card-text" style={{ color: '#808080' }}>No notes in records.</p>
                     </div>
                 </div>
             )
         } else {
             return (
                 <Container style={{ position: 'relative' }}>
-                    <Row>
-                        <Col>
-                        <Container className="mb-4" style={{ textAlign: "left" }}>
-                            <h4 className="page-title">
-                                Bulletin Board
-                            </h4>   
-                        </Container>
-                        </Col>
-                        <Col>
-                            <FormDialog />
-                        </Col>
-                    </Row>
                     <Row>
                         {this.props.notes.map(note => {
                             return (
@@ -72,13 +55,6 @@ class NotesList extends React.Component {
                                 </Col>
                             );
                         })}
-                        {/* <Col md="auto" className="px-2 mb-3">
-                            <Card className="h-100 bg-light" style={{ width: '16rem', position: 'relative', textAlign: "center" }}>
-                                <Button>
-                                    <AddIcon style={{ margin: 'auto' }}/>
-                                </Button>
-                            </Card>
-                        </Col> */}
                     </Row>
                 </Container>
             );
