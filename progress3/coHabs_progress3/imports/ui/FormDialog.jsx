@@ -7,9 +7,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import { KeyboardDatePicker } from "@material-ui/pickers";
+import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+
+import Notes from '../api/notes';
 
 class FormDialog extends React.Component {
   constructor(props) {
@@ -20,13 +23,14 @@ class FormDialog extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
-  }
 
-  state = {
-    open: false,
-    message: '',
-    type: '',
-    date: ''
+    this.state = {
+      open: false,
+      message: '',
+      type: '',
+      date: '',
+      username: ''
+    }
   }
 
   handleClickOpen = () => {
@@ -44,7 +48,8 @@ class FormDialog extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
+        username: Meteor.user().username
     });
   };
 
@@ -69,17 +74,19 @@ class FormDialog extends React.Component {
         console.log(this.props);
         console.log('adding note ...')
         console.log(this.state);
-        this.props.onAddNote(this.state);
+        console.log(Meteor.user().username);
+        Notes.insert(this.state);
+        // this.props.onAddNote(this.state);
         this.handleClose();
     }
   };
 
   render() {
     return (
-      <div style={{ height: '100%' }}>
-        <Button style={{ height: '100%', width: '100%' }} onClick={ this.handleClickOpen }>
-          <AddIcon style={{ margin: 'auto' }}/>
-        </Button>
+      <div style={{ height: '100%' }} className="text-right">
+        <IconButton onClick={ this.handleClickOpen }>
+          <AddIcon />
+        </IconButton>
         <Dialog open={ this.state.open } onClose={ this.handleClose } aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Add a Note</DialogTitle>
           <DialogContent>
@@ -127,16 +134,14 @@ class FormDialog extends React.Component {
                   />
                 </FormControl>
                 {/* <FormControl style={{ width: '100%' }} className="mt-3">
-                  <KeyboardDatePicker
-                    autoOk
-                    variant="inline"
-                    inputVariant="outlined"
-                    name="date"
-                    label="date"
-                    format="MM/dd/yyyy"
-                    value={ this.state.date }
-                    InputAdornmentProps={{ position: "start" }}
-                    onChange={date => this.handleDateChange(date)}
+                  <DatePicker
+                  selected={ this.state.date }
+                  onChange={ this.handleDateChange }
+                  showTimeSelect
+                  timeIntervals={15}
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  timeCaption="Time"
+                  className="dateinput"
                   />
                 </FormControl> */}
               </form>

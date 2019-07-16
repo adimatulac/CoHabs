@@ -20,9 +20,10 @@ import Col from 'react-bootstrap/Col';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import { Meteor } from 'meteor/meteor';
 import InputForm from './InputForm';
+import BulletinHeader from './BulletinHeader';
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +58,10 @@ export default function ClippedDrawer() {
           <Typography variant="h6" noWrap>
             CoHabs
           </Typography>
-           
+          <div className="toolbar-buttons" style={{ marginLeft: 'auto', marginRight: '100px' }}>
+          <div>
+            <AccountsUIWrapper /></div>
+          </div>
         </Toolbar>
         
       </AppBar>
@@ -96,12 +100,12 @@ export default function ClippedDrawer() {
           </ListItem>
           
 
-          <ListItem >
+          {/* <ListItem >
           <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div>
             <AccountsUIWrapper align="center" /></div>
         </div>
-          </ListItem>
+          </ListItem> */}
         </List>
         </Drawer>
         {Meteor.userId() == null ? 
@@ -126,14 +130,8 @@ export default function ClippedDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Container>
+          <BulletinHeader />
           <NotesList />
-          <Row>
-            <div className="col" align="center">
-              <div className="col-shrink">
-                <InputForm />
-              </div>
-            </div>
-          </Row>
         </Container>
       </main>
         }
