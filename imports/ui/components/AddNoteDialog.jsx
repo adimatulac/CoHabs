@@ -19,11 +19,13 @@ export default class AddNoteDialog extends React.Component {
         this.handleClear = this.handleClear.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
 
         this.state = {
             open: false,
             message: '',
+            details: '',
             type: '',
             date: '',
             username: ''
@@ -46,6 +48,7 @@ export default class AddNoteDialog extends React.Component {
     handleClear = () => {
         this.setState({
             message: '',
+            details: '',
             type: '',
             date: ''
         });
@@ -64,8 +67,9 @@ export default class AddNoteDialog extends React.Component {
         }
     }
 
-    handleChangeSelect = (e) => {
-        console.log(e.target.name);
+    handleSelectChange = (e) => {
+        console.log(e);
+        console.log(e.target);
         console.log(e.target.textContent);
         this.setState({
             type: e.target.textContent
@@ -84,7 +88,9 @@ export default class AddNoteDialog extends React.Component {
             const newNote = {
                 type: this.state.type,
                 message: this.state.message,
-                date: this.state.date
+                details: this.state.details,
+                date: this.state.date,
+                username: this.state.username,
             }
             Notes.insert(newNote);
             this.handleClose();
@@ -103,14 +109,16 @@ export default class AddNoteDialog extends React.Component {
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Field>
-                                    <Form.Select name='type' label='type' options={options} placeholder='type' onChange={this.handleChangeSelect} />
+                                    <Form.Select name='type' options={options} placeholder='type' onChange={this.handleSelectChange} />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Field>
-                                    <label>message</label>
                                     <input name='message' value={this.state.message} onChange={this.handleChange} placeholder='message' />
                                 </Form.Field>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.TextArea name='details' value={this.state.details} placeholder='details' onChange={this.handleChange}/>
                             </Form.Group>
                             {/* <Form.Group>
                                 <Form.Field style={{ width: '100%' }}>
@@ -120,7 +128,6 @@ export default class AddNoteDialog extends React.Component {
                             </Form.Group> */}
                             <Form.Group>
                                 <DateInput
-                                label='date'
                                 name='date'
                                 placeholder='date'
                                 dateFormat='MMMM D YYYY'

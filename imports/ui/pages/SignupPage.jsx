@@ -19,19 +19,25 @@ export default class SignupPage extends React.Component {
         e.preventDefault();
         let username = document.getElementById('signup-username').value;
         console.log('username: ' + username);
-        let password = document.getElementById('signup-password').value;
-        console.log('password: ' + password);
-        Accounts.createUser({username: username, password: password}, (err) => {
-            if (err) {
-                console.log('error');
-                this.setState({
-                    error: err.reason
-                });
-            } else {
-                console.log('success');
-                this.props.history.push('/login');
-            }
-        });
+        let passwordPri = document.getElementById('signup-password-pri').value;
+        let passwordSec = document.getElementById('signup-password-sec').value;
+        if (passwordPri !== passwordSec) {
+            this.setState({
+                error: 'Passwords don\'t match'
+            });
+        } else {
+            Accounts.createUser({username: username, password: passwordPri}, (err) => {
+                if (err) {
+                    console.log('error');
+                    this.setState({
+                        error: err.reason
+                    });
+                } else {
+                    console.log('success');
+                    this.props.history.push('/login');
+                }
+            });
+        }
     }
 
     render() {
@@ -50,7 +56,10 @@ export default class SignupPage extends React.Component {
                                 <input type='text' id='signup-username' placeholder='username'></input>
                             </Form.Field>
                             <Form.Field>
-                                <input type='password' id='signup-password' placeholder='password'></input>
+                                <input type='password' id='signup-password-pri' placeholder='password'></input>
+                            </Form.Field>
+                            <Form.Field>
+                                <input type='password' id='signup-password-sec' placeholder='password again'></input>
                             </Form.Field>
                             <Button fluid size='large' style={{ backgroundColor: '#2196F3', color: 'white' }} onClick={this.handleSubmit}>
                                 Sign up

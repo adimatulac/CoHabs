@@ -51,7 +51,7 @@ export default class Note extends React.Component {
                         <Card.Header style={{ paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
                         <Card.Meta>{ this.props.note.date }</Card.Meta>
                         <Card.Description>
-                            This is a note.
+                            {this.props.note.details}
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra style={{ textAlign: 'right' }}>
@@ -61,8 +61,9 @@ export default class Note extends React.Component {
                     <Modal.Content>
                         <Modal.Description>
                             <Header style={{ textAlign: 'left' }}>{this.props.note.message}</Header>
-                            <p style={{ color: '#8A8A8A' }}>{this.props.note.date}</p>
-                            <p>Something about details.</p>
+                            <p style={{ color: '#8A8A8A' }}>@{this.props.note.username}</p>
+                            <p>{this.props.note.date}</p>
+                            <p>{this.props.note.details}</p>
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
                         <Button style={{ backgroundColor: '#2196F3', color: 'white', marginTop: '20px' }}>Accept</Button> : '' }
