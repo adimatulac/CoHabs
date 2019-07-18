@@ -261,3 +261,11 @@ h6 {
   border-width: 2px;
   border-color: #3f51b5;
 }
+
+.fixed-menu-height {
+  height: 50px;
+}
+
+.field {
+  width: 100%
+}

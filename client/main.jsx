@@ -1,19 +1,21 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
-import App from '/imports/ui/App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'semantic-ui-css/semantic.min.css'
 import '../imports/index.css';
 import '../imports/startup/accounts-config.js';
 
+import { renderRoutes } from '../imports/startup/routes';
 
+// Meteor.startup(() => {
+//   render(
+// 		<App />, document.getElementById('react-target'));
+// });
 
 Meteor.startup(() => {
-  render(
-		<App />, document.getElementById('react-target'));
+	render(renderRoutes(), document.getElementById('react-target'));
 });
 
-
-if(Meteor.isClient){
+if (Meteor.isClient) {
 	Meteor.subscribe('theNotes');
 }
