@@ -29,18 +29,18 @@ export default class MenuBar extends React.Component {
 
         if (loggedIn) {
             return (
-                <Menu className='fixed fixed-menu-height'>
-                    <Menu.Item name='brand'>CoHabs</Menu.Item>
-                    <h4 style={{ margin: 'auto' }}>Hi, {currentUser.username}!</h4>
+                <Menu className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
+                    <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white' }}>CoHabs</Menu.Item>
+                    <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.username}!</h4>
                     <Menu.Item>
-                        <Button onClick={this.props.onLogout}>Logout</Button>
+                        <Button style={{ color: 'white' }} onClick={this.props.onLogout}>Logout</Button>
                     </Menu.Item>
                 </Menu>
             );
         } else {
             return (
-                <Menu className='fixed fixed-menu-height'>
-                    <h3 style={{ margin: 'auto' }}>CoHabs</h3>
+                <Menu className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
+                    <h3 style={{ margin: 'auto', color: 'white' }}>CoHabs</h3>
                 </Menu>
             );
         }

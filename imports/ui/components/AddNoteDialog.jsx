@@ -3,10 +3,9 @@ import { Button, Modal, Form } from 'semantic-ui-react';
 import Notes from '../../api/notes';
 
 const options = [
-    { key: 'e', text: 'event', value: 'event'},
-    { key: 'c', text: 'chores', value: 'chores'},
-    { key: 'h', text: 'household maintenance', value: 'household maintenance'},
-    { key: 'p', text: 'personal', value: 'personal'},
+    { key: 'ev', text: 'event', value: 'event'},
+    { key: 'rq', text: 'request', value: 'request'},
+    { key: 'rm', text: 'reminder', value: 'reminder'}
 ]
 
 export default class AddNoteDialog extends React.Component {
@@ -89,6 +88,11 @@ export default class AddNoteDialog extends React.Component {
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
                                 <Form.Field style={{ width: '100%' }}>
+                                    <Form.Select name='type' label='type' options={options} placeholder='type' onChange={this.handleChangeSelect} />
+                                </Form.Field>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Field style={{ width: '100%' }}>
                                     <label>message</label>
                                     <input name='message' value={this.state.message} onChange={this.handleChange} placeholder='message' />
                                 </Form.Field>
@@ -99,16 +103,11 @@ export default class AddNoteDialog extends React.Component {
                                     <input name='date' value={this.state.date} onChange={this.handleChange} placeholder='date' />
                                 </Form.Field>
                             </Form.Group>
-                            <Form.Group>
-                                <Form.Field style={{ width: '100%' }}>
-                                    <Form.Select name='type' label='type' options={options} placeholder='type' onChange={this.handleChangeSelect} />
-                                </Form.Field>
-                            </Form.Group>
                         </Form>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Add</Button>
+                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Add</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

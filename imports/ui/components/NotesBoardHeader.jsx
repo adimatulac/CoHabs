@@ -8,7 +8,7 @@ export default class NotesBoardHeader extends React.Component {
             <Container style={{ marginTop: '14px' }}>
                 <Grid columns={2}>
                     <Grid.Column textAlign='left'>
-                        <h1>Notes</h1>
+                        <h2 style={{ color: '#4D4D4D' }}>Notes</h2>
                     </Grid.Column>  
                     <Grid.Column textAlign='right'>
                         <AddNoteDialog />

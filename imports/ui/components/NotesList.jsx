@@ -1,5 +1,6 @@
 import React from 'react';
-import { Message, Container, Grid, Card } from 'semantic-ui-react';
+import { Message, Container, Card } from 'semantic-ui-react';
+import Notes from '../../api/notes';
 import Note from './Note';
 
 export default class NotesList extends React.Component {
@@ -7,9 +8,9 @@ export default class NotesList extends React.Component {
         super(props);
     }
 
-    // onDelete = (id) => {
-    //     Notes.remove(id);
-    // };
+    onDelete = (id) => {
+        Notes.remove(id);
+    };
 
     render() {
         console.log(this.props);
@@ -27,7 +28,7 @@ export default class NotesList extends React.Component {
                     <Card.Group>
                         {this.props.notes.map(note => {
                             return (
-                                <Note note={ note } key={note._id} />
+                                <Note note={ note } key={note._id} onDelete={this.onDelete} />
                             );
                         })}
                     </Card.Group>
