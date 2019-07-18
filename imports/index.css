@@ -265,3 +265,7 @@ h6 {
 .fixed-menu-height {
   height: 50px;
 }
+
+.field {
+  width: 100%
+}

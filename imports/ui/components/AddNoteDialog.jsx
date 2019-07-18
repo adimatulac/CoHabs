@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import Notes from '../../api/notes';
+import { DateInput } from 'semantic-ui-calendar-react';
 
 const options = [
+    { key: 'n', text: 'none', value: 'none'},
     { key: 'ev', text: 'event', value: 'event'},
     { key: 'rq', text: 'request', value: 'request'},
     { key: 'rm', text: 'reminder', value: 'reminder'}
@@ -16,6 +18,8 @@ export default class AddNoteDialog extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleClear = this.handleClear.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
 
         this.state = {
             open: false,
@@ -54,6 +58,12 @@ export default class AddNoteDialog extends React.Component {
         });
     };
 
+    handleDateChange = (e, {name, value}) => {
+        if (this.state.hasOwnProperty(name)) {
+            this.setState({ [name]: value });
+        }
+    }
+
     handleChangeSelect = (e) => {
         console.log(e.target.name);
         console.log(e.target.textContent);
@@ -71,7 +81,12 @@ export default class AddNoteDialog extends React.Component {
             console.log('adding note ...')
             console.log(this.state);
             console.log(Meteor.user().username);
-            Notes.insert(this.state);
+            const newNote = {
+                type: this.state.type,
+                message: this.state.message,
+                date: this.state.date
+            }
+            Notes.insert(newNote);
             this.handleClose();
         }
     }
@@ -87,21 +102,34 @@ export default class AddNoteDialog extends React.Component {
                     <Modal.Content>
                         <Form onSubmit={this.onSubmit}>
                             <Form.Group>
-                                <Form.Field style={{ width: '100%' }}>
+                                <Form.Field>
                                     <Form.Select name='type' label='type' options={options} placeholder='type' onChange={this.handleChangeSelect} />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group>
-                                <Form.Field style={{ width: '100%' }}>
+                                <Form.Field>
                                     <label>message</label>
                                     <input name='message' value={this.state.message} onChange={this.handleChange} placeholder='message' />
                                 </Form.Field>
                             </Form.Group>
-                            <Form.Group>
+                            {/* <Form.Group>
                                 <Form.Field style={{ width: '100%' }}>
                                     <label>date</label>
                                     <input name='date' value={this.state.date} onChange={this.handleChange} placeholder='date' />
                                 </Form.Field>
+                            </Form.Group> */}
+                            <Form.Group>
+                                <DateInput
+                                label='date'
+                                name='date'
+                                placeholder='date'
+                                dateFormat='MMMM D YYYY'
+                                value={this.state.date}
+                                icon={false}
+                                closable={true}
+                                duration={0}
+                                onChange={this.handleDateChange}
+                                />
                             </Form.Group>
                         </Form>
                     </Modal.Content>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Modal, Button, Popup } from 'semantic-ui-react';
+import { Card, Header, Modal, Button, Popup } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
@@ -10,6 +10,7 @@ export default class Note extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.getColour = this.getColour.bind(this);
 
         this.state = {
             open: false,
@@ -28,13 +29,27 @@ export default class Note extends React.Component {
         });
     }
 
+    getColour(type) {
+        console.log(type);
+        switch (type) {
+            case 'event':
+                return '#DBF1FF'
+            case 'request':
+                return '#FFDBDB'
+            case 'reminder':
+                return '#FFFBDB'
+            default:
+                return ''
+        }
+    }
+
     render() {
         const { open } = this.state;
         return (
-                <Card style={{ width: '219px', textAlign: 'left' }} onClick={this.handleShow}>
+                <Card style={{ width: '219px', textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
                     <Card.Content>
                         <Card.Header style={{ paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
-                        <Card.Meta>{ this.props.note.type }</Card.Meta>
+                        <Card.Meta>{ this.props.note.date }</Card.Meta>
                         <Card.Description>
                             This is a note.
                         </Card.Description>
@@ -43,10 +58,11 @@ export default class Note extends React.Component {
                         { this.props.note.username }
                     </Card.Content>
                     <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>{this.props.note.message}</Modal.Header>
                     <Modal.Content>
                         <Modal.Description>
-                            Something about details.
+                            <Header style={{ textAlign: 'left' }}>{this.props.note.message}</Header>
+                            <p style={{ color: '#8A8A8A' }}>{this.props.note.date}</p>
+                            <p>Something about details.</p>
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
                         <Button style={{ backgroundColor: '#2196F3', color: 'white', marginTop: '20px' }}>Accept</Button> : '' }
