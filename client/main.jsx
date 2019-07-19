@@ -15,7 +15,3 @@ import { renderRoutes } from '../imports/startup/routes';
 Meteor.startup(() => {
 	render(renderRoutes(), document.getElementById('react-target'));
 });
-
-if (Meteor.isClient) {
-	Meteor.subscribe('theNotes');
-}

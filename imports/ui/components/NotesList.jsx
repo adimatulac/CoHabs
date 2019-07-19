@@ -2,6 +2,7 @@ import React from 'react';
 import { Message, Container, Card } from 'semantic-ui-react';
 import Notes from '../../api/notes';
 import Note from './Note';
+import { Meteor } from 'meteor/meteor';
 
 export default class NotesList extends React.Component {
     constructor(props) {
@@ -9,7 +10,9 @@ export default class NotesList extends React.Component {
     }
 
     onDelete = (id) => {
-        Notes.remove(id);
+
+        Meteor.call('notes.remove', id);
+        // Notes.remove(id);
     };
 
     render() {
