@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import Notes from '../../api/notes';
 import { DateInput } from 'semantic-ui-calendar-react';
+import { Meteor } from 'meteor/meteor';
 
 const options = [
     { key: 'n', text: 'none', value: 'none'},
@@ -80,14 +81,7 @@ export default class AddNoteDialog extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.message.trim() && this.state.date.trim() && this.state.type.trim()) {
-            const newNote = {
-                type: this.state.type,
-                message: this.state.message,
-                details: this.state.details,
-                date: this.state.date,
-                username: this.state.username,
-            }
-            Notes.insert(newNote);
+            Meteor.call('notes.insert', this.state.type, this.state.message, this.state.details, this.state.date, this.state.username);
             this.handleClose();
         }
     }

@@ -1,11 +1,13 @@
 import { withTracker } from 'meteor/react-meteor-data';
 import NotesList from '../components/NotesList';
-import Notes from '../../api/notes';
+import { Notes } from '../../api/notes';
+import { Meteor } from 'meteor/meteor';
+
 
 const NotesListContainer = withTracker(({ id }) => {
-    const todosHandle = Meteor.subscribe('notes.public');
+    
+    Meteor.subscribe('notes');
     return {
-        onDelete: Notes.remove(id),
         notes: Notes.find().fetch(),
     };
 })(NotesList);
