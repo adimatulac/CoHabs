@@ -7,11 +7,6 @@ import '../imports/startup/accounts-config.js';
 
 import { renderRoutes } from '../imports/startup/routes';
 
-// Meteor.startup(() => {
-//   render(
-// 		<App />, document.getElementById('react-target'));
-// });
-
 Meteor.startup(() => {
 	render(renderRoutes(), document.getElementById('react-target'));
 });

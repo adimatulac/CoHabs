@@ -1,6 +1,5 @@
 import React from 'react';
-import { withHistory, Link } from 'react-router-dom';
-import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';

@@ -1,8 +1,6 @@
 import React from 'react';
-import { withHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import { Container } from '@material-ui/core';
-import Alert from 'react-bootstrap/Alert';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import MenuBar from '../components/MenuBar';
 
@@ -18,7 +16,6 @@ export default class SignupPage extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let username = document.getElementById('signup-username').value;
-        console.log('username: ' + username);
         let passwordPri = document.getElementById('signup-password-pri').value;
         let passwordSec = document.getElementById('signup-password-sec').value;
         if (passwordPri !== passwordSec) {

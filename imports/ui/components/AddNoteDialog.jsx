@@ -80,11 +80,6 @@ export default class AddNoteDialog extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.message.trim() && this.state.date.trim() && this.state.type.trim()) {
-            console.log('listing props in input form:');
-            console.log(this.props);
-            console.log('adding note ...')
-            console.log(this.state);
-            console.log(Meteor.user().username);
             const newNote = {
                 type: this.state.type,
                 message: this.state.message,
@@ -120,12 +115,6 @@ export default class AddNoteDialog extends React.Component {
                             <Form.Group>
                                 <Form.TextArea name='details' value={this.state.details} placeholder='details' onChange={this.handleChange}/>
                             </Form.Group>
-                            {/* <Form.Group>
-                                <Form.Field style={{ width: '100%' }}>
-                                    <label>date</label>
-                                    <input name='date' value={this.state.date} onChange={this.handleChange} placeholder='date' />
-                                </Form.Field>
-                            </Form.Group> */}
                             <Form.Group>
                                 <DateInput
                                 name='date'
