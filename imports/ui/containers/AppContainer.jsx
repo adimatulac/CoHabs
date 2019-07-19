@@ -1,8 +1,6 @@
 import React from 'react';
-import { withHistory } from 'react-router-dom';
 import MainContainer from './MainContainer';
 import { Meteor } from 'meteor/meteor';
-import MenuBar from '../components/MenuBar';
 import MenuBarContainer from './MenuBarContainer';
 
 export default class AppContainer extends React.Component {

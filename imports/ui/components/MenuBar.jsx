@@ -8,6 +8,7 @@ export default class MenuBar extends React.Component {
         this.state = {
             username: ''
         };
+        
         this.logout = this.logout.bind(this);
     }
 

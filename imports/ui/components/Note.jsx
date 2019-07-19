@@ -47,9 +47,11 @@ export default class Note extends React.Component {
         const { open } = this.state;
         return (
                 <Card style={{ width: '219px', textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
-                    <Card.Content>
-                        <Card.Header style={{ paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
+                    <div style={{ padding: '14px' }}>
                         <Card.Meta>{ this.props.note.date }</Card.Meta>
+                    </div>
+                    <Card.Content>
+                        <Card.Header style={{ paddingTop: '0', paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
                         <Card.Description>
                             {this.props.note.details}
                         </Card.Description>
@@ -58,15 +60,17 @@ export default class Note extends React.Component {
                         { this.props.note.username }
                     </Card.Content>
                     <Modal size={'mini'} open={open} onClose={this.handleClose}>
+                        <Modal.Header style={{ textAlign: 'left', fontSize: '16px', color: '#4D4D4D' }}>
+                            { this.props.note.date }
+                        </Modal.Header>
                     <Modal.Content>
                         <Modal.Description>
-                            <Header style={{ textAlign: 'left' }}>{this.props.note.message}</Header>
+                            <Header textAlign='left' style={{ marginBottom: '0' }}>{this.props.note.message}</Header>
                             <p style={{ color: '#8A8A8A' }}>@{this.props.note.username}</p>
-                            <p>{this.props.note.date}</p>
                             <p>{this.props.note.details}</p>
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
-                        <Button style={{ backgroundColor: '#2196F3', color: 'white', marginTop: '20px' }}>Accept</Button> : '' }
+                        <Button style={{ backgroundColor: '#2196F3', color: 'white', marginTop: '20px' }}>Accept Request</Button> : '' }
                     </Modal.Content>
                     <Modal.Actions>
                         { Meteor.user().username === this.props.note.username ? 
@@ -74,9 +78,11 @@ export default class Note extends React.Component {
                             <Button icon>
                                 <FontAwesomeIcon icon={faEdit} />
                             </Button>
-                            <Popup trigger={<Button icon>
-                                                <FontAwesomeIcon icon={faTrashAlt} />
-                                            </Button>}
+                            <Popup 
+                                trigger={
+                                    <Button icon>
+                                        <FontAwesomeIcon icon={faTrashAlt} />
+                                    </Button>}
                                 content={
                                     <div>
                                         <p style={{ fontWeight: 'bold' }}>Are you sure you want to delete this note?</p>
