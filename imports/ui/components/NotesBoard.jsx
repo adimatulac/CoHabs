@@ -4,11 +4,26 @@ import { Container } from 'semantic-ui-react';
 import NotesListContainer from '../containers/NotesListContainer';
 
 export default class NotesBoard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: ''
+        }
+
+        this.onFilter = this.onFilter.bind(this);
+    }
+
+    onFilter = (type) => {
+        this.setState({
+            type: type
+        });
+    };
+
     render() {
         return (
             <Container>
-                <NotesBoardHeader />
-                <NotesListContainer />
+                <NotesBoardHeader onFilter={this.onFilter} />
+                <NotesListContainer notesFilter={this.state.type} />
             </Container>
         );
     }

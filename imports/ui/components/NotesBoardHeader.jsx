@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Label, Button } from 'semantic-ui-react';
 import AddNoteDialog from './AddNoteDialog';
 
 export default class NotesBoardHeader extends React.Component {
+    
     render() {
         return (
             <Container style={{ marginTop: '14px' }}>
@@ -14,14 +15,10 @@ export default class NotesBoardHeader extends React.Component {
                         <AddNoteDialog />
                     </Grid.Column>  
                     <Grid.Column textAlign='left' style={{ paddingTop: '0' }}>
-                        <div style={{ width: '100%', margin: '0 auto' }}>
-                            <div style={{ marginTop: '2px', height: '14px', width: '14px', borderRadius: '2px', backgroundColor: '#36B1FF', display: 'inline-block' }} />
-                            <p style={{ display: 'inline-block', margin: '0 0 4px 6px' }}>events</p>
-                            <div style={{ marginTop: '2px', marginLeft: '12px', height: '14px', width: '14px', borderRadius: '2px', backgroundColor: '#FF4747', display: 'inline-block' }} />
-                            <p style={{ display: 'inline-block', margin: '0 0 4px 6px' }}>requests</p>
-                            <div style={{ marginTop: '2px', marginLeft: '12px', height: '14px', width: '14px', borderRadius: '2px', backgroundColor: '#FFE622', display: 'inline-block' }} />
-                            <p style={{ display: 'inline-block', margin: '0 0 4px 6px' }}>reminders</p>
-                        </div>
+                        <Button size='mini' color='grey' style={{ fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('')}>All</Button>
+                        <Button size='mini' style={{ backgroundColor: '#5CC0FF', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('event')}>Events</Button>
+                        <Button size='mini' style={{ backgroundColor: '#FF5B5B', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('request')}>Requests</Button>
+                        <Button size='mini' style={{ backgroundColor: '#FFEC55', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('reminder')}>Reminders</Button>
                     </Grid.Column> 
                 </Grid>
             </Container>

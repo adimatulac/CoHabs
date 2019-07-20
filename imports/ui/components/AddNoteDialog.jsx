@@ -99,7 +99,7 @@ export default class AddNoteDialog extends React.Component {
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>What's on your mind?</Modal.Header>
                     <Modal.Content>
-                        <Form onSubmit={this.onSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Field>
                                     <Form.Select name='type' options={options} placeholder='type' onChange={this.handleSelectChange} />

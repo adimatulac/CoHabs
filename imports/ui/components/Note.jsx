@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, Header, Modal, Button, Popup, Label } from 'semantic-ui-react';
+import { Card, Header, Modal, Button, Popup, Label, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default class Note extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export default class Note extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.getColour = this.getColour.bind(this);
         this.handleAcceptRequest = this.handleAcceptRequest.bind(this);
+        this.userExists = this.userExists.bind(this);
 
         this.state = {
             open: false,
@@ -35,17 +37,23 @@ export default class Note extends React.Component {
     }
 
     handleAcceptRequest = () => {
-        this.setState(state => {
-            const helpers = state.helpers.concat({_id: 3, username: 'angellid'});
+        if (!this.userExists()) {
+            this.setState(state => {
+                const helpers = state.helpers.concat({_id: 3, username: 'angellid'});
+                return {
+                    helpers
+                }
+            });
+        }
+    }
 
-            return {
-                helpers
-            }
+    userExists = () => {
+        return this.state.helpers.some(h => {
+            return h.username === Meteor.user().username
         });
     }
 
     getColour(type) {
-        console.log(type);
         switch (type) {
             case 'event':
                 return '#DBF1FF'
@@ -85,9 +93,19 @@ export default class Note extends React.Component {
                             <p>{this.props.note.details}</p>
                             { this.state.helpers.length !== 0 && this.props.note.type === 'request' ? 
                             this.state.helpers.map(helper => {
-                                return (
+                                if (helper.username === Meteor.user().username) {
+                                    return (
+                                    // TODO: fix 'x' button for own label
+                                    <Label key={helper._id}>
+                                        {helper.username}
+                                        <Icon name='delete' />
+                                    </Label>
+                                    )
+                                } else {
+                                    return (
                                     <Label key={helper._id}>{helper.username}</Label>
-                                );
+                                    )
+                                }
                             }) : '' }
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
@@ -122,3 +140,5 @@ export default class Note extends React.Component {
         );
     }
 }
+
+{/* <Label key={helper._id} content={helper.username} removeIcon={<FontAwesomeIcon icon={faTimes} />} onRemove={() => console.log('removed ' + helper.username)} /> */}

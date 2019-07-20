@@ -65,7 +65,7 @@ export default class AddUserDialog extends React.Component {
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>Add a Roomie</Modal.Header>
                     <Modal.Content>
-                        <Form onSubmit={this.onSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Field>
                                     <input name='email' value={this.state.email} onChange={this.handleChange} placeholder='email' />

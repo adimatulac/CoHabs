@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 export const Notes = new Mongo.Collection('notesList');
 
-if(Meteor.isServer){
+if (Meteor.isServer) {
     // console.log("this is server");
     Meteor.publish('notes', function notesPublication(){
         return Notes.find();
