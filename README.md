@@ -2,9 +2,9 @@
 
 Web application project for CPSC 436I.
 
+High Level Description
 - CoHabs is a web application that allows users to manage shared tasks, bills, and schedules among those living together under one roof. 
-- Its target users are room/housemates who regularly share communal spaces and responsibilities for the household but may not always be available to organize said activities together. 
-- It will store users’ personal information, task lists, invoices, receipts, and schedules. Users can access the data that pertains to them so that they know when it’s their turn to do certain chores, how much they owe/are owed for utilities, or when their roommates are having friends over. Additional functionalities can include personalized reminders, in-app messaging, and in-app payments.
+- Users can access data pertaining to their share of chores, how much they owe/are owed for utilities, or miscellaneous events like when their roommates are having friends over.
 
 ## In Development 
 
