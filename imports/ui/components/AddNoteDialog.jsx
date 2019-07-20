@@ -1,15 +1,20 @@
 import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
-import Notes from '../../api/notes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DateInput } from 'semantic-ui-calendar-react';
 import { Meteor } from 'meteor/meteor';
+
+const disabledDates = [
+    new Date()
+];
 
 const options = [
     { key: 'n', text: 'none', value: 'none'},
     { key: 'ev', text: 'event', value: 'event'},
     { key: 'rq', text: 'request', value: 'request'},
     { key: 'rm', text: 'reminder', value: 'reminder'}
-]
+];
 
 export default class AddNoteDialog extends React.Component {
     constructor(props) {
@@ -69,9 +74,6 @@ export default class AddNoteDialog extends React.Component {
     }
 
     handleSelectChange = (e) => {
-        console.log(e);
-        console.log(e.target);
-        console.log(e.target.textContent);
         this.setState({
             type: e.target.textContent
         });
@@ -90,12 +92,14 @@ export default class AddNoteDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>Add Note</Button>
+                <Button onClick={this.handleShow}>
+                    <FontAwesomeIcon icon={faPlus} />
+                </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>What's on your mind?</Modal.Header>
                     <Modal.Content>
-                        <Form onSubmit={this.onSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
                                 <Form.Field>
                                     <Form.Select name='type' options={options} placeholder='type' onChange={this.handleSelectChange} />
@@ -117,8 +121,10 @@ export default class AddNoteDialog extends React.Component {
                                 value={this.state.date}
                                 icon={false}
                                 closable={true}
-                                duration={0}
+                                animation='none'
                                 onChange={this.handleDateChange}
+                                disable={disabledDates}
+                                style={{ border: 'none' }}
                                 />
                             </Form.Group>
                         </Form>
