@@ -10,9 +10,7 @@ export default class NotesList extends React.Component {
     }
 
     onDelete = (id) => {
-
         Meteor.call('notes.remove', id);
-        // Notes.remove(id);
     };
 
     render() {
@@ -21,9 +19,11 @@ export default class NotesList extends React.Component {
 
         if (this.props.notes.length === 0) {
             return (
-                <Message>
-                    No notes on board.
-                </Message>
+                <div style={{ width: '100%', padding: '40px' }}>
+                    <Message style={{ width: '200px', margin: 'auto' }}>
+                        No notes on board.
+                    </Message>
+                </div>
             );
         } else {
             return (
