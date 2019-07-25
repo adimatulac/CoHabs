@@ -22,7 +22,7 @@ export default class NotesList extends React.Component {
             );
         } else {
             return (
-                <Container style={{ marginTop: '14px' }}>
+                <Container style={{ paddingTop: '20px' }}>
                     <Card.Group doubling stackable itemsPerRow={4}>
                         { this.props.notesFilter !== '' ? 
                             this.props.notes.filter(note => {

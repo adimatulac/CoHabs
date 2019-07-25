@@ -14,13 +14,13 @@ export default class NotesBoardHeader extends React.Component {
                     <Grid.Column textAlign='right' style={{ paddingBottom: '0' }}>
                         <AddNoteDialog />
                     </Grid.Column>  
-                    <Grid.Column textAlign='left' style={{ paddingTop: '0' }}>
+                </Grid>
+                <Container textAlign='left' style={{ paddingTop: '14px' }}>
                         <Button size='mini' color='grey' style={{ fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('')}>All</Button>
                         <Button size='mini' style={{ backgroundColor: '#5CC0FF', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('event')}>Events</Button>
                         <Button size='mini' style={{ backgroundColor: '#FF5B5B', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('request')}>Requests</Button>
                         <Button size='mini' style={{ backgroundColor: '#FFEC55', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('reminder')}>Reminders</Button>
-                    </Grid.Column> 
-                </Grid>
+                </Container> 
             </Container>
         );
     }

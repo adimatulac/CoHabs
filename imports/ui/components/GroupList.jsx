@@ -23,8 +23,8 @@ export default class GroupList extends React.Component {
             );
         } else {
             return (
-                <Container style={{ marginTop: '14px' }}>
-                    <Card.Group doubling stackable itemsPerRow={1}>
+                <Container style={{ paddingTop: '20px' }}>
+                    <Card.Group doubling stackable centered itemsPerRow={1}>
                         {this.state.map(user => {
                             return (
                                 <User user={ user } key={user._id} />
