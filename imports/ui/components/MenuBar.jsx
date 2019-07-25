@@ -34,7 +34,7 @@ export default class MenuBar extends React.Component {
                     <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white' }}>CoHabs</Menu.Item>
                     <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.username}!</h4>
                     <Menu.Item>
-                        <Button style={{ color: 'white' }} onClick={this.props.onLogout}>Logout</Button>
+                        <Button style={{ color: 'white', fontWeight: 'bold' }} onClick={this.props.onLogout}>Logout</Button>
                     </Menu.Item>
                 </Menu>
             );
