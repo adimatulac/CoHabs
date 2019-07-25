@@ -69,7 +69,7 @@ export default class Note extends React.Component {
     render() {
         const { open } = this.state;
         return (
-                <Card style={{ width: '219px', textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
+                <Card style={{ textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
                     <div style={{ padding: '14px' }}>
                         <Card.Meta>{ this.props.note.date }</Card.Meta>
                     </div>

@@ -22,8 +22,8 @@ export default class NotesList extends React.Component {
             );
         } else {
             return (
-                <Container>
-                    <Card.Group>
+                <Container style={{ marginTop: '14px' }}>
+                    <Card.Group doubling stackable itemsPerRow={4}>
                         { this.props.notesFilter !== '' ? 
                             this.props.notes.filter(note => {
                                 return note.type === this.props.notesFilter
