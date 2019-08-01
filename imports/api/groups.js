@@ -11,16 +11,26 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    // insert method should take group id and username -- when to authenticate id and user?
-    'groups.insert'(id, username) {
-        console.log('group id: ' + id);
-        if (!Meteor.user().username) {
+    // insert method should take groupname and username -- when to authenticate user?
+    'groups.insert'(id, groupname, username) {
+        console.log('groupname: ' + groupname);
+        if (!username) {
             throw new Meteor.Error('not-authorized');
         }
 
         Groups.insert({
-            members: []
+            id: id,
+            groupname: groupname,
+            members: [username]
         });
+    },
+
+    // update method should take group id and username
+    'groups.update'(id, username) {
+        Groups.update(
+            { id: id },
+            { $addToSet: { members: username } }
+        )
     }
 });
 
