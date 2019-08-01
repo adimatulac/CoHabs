@@ -6,7 +6,11 @@ export const Notes = new Mongo.Collection('notesList');
 if (Meteor.isServer) {
     // console.log("this is server");
     Meteor.publish('notes', function notesPublication(){
-        return Notes.find({}, { sort: { date: 1 } });
+        return Notes.find({
+            date: {
+                $gte: new Date()
+            }
+        }, { sort: { date: 1 } });
     });
 }
 
