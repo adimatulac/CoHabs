@@ -34,7 +34,8 @@ export default class AddNoteDialog extends React.Component {
             details: '',
             type: '',
             date: '',
-            username: ''
+            username: '',
+            groupid: ''
         }
     }
 
@@ -69,7 +70,7 @@ export default class AddNoteDialog extends React.Component {
 
     handleDateChange = (e, {name, value}) => {
         if (this.state.hasOwnProperty(name)) {
-            this.setState({ [name]: value });
+            this.setState({ [name]: new Date(value) });
         }
     }
 
@@ -82,7 +83,9 @@ export default class AddNoteDialog extends React.Component {
     // TODO: bug in dropdown menu when using keyboard (repeats all options)
     handleSubmit = (e) => {
         e.preventDefault();
-        if (this.state.message.trim() && this.state.date.trim() && this.state.type.trim()) {
+        console.log('note date: ' + this.state.date);
+        if (this.state.message.trim() && this.state.type.trim()) {
+            // TODO: on submit re-render notes list to re-order by date???
             Meteor.call('notes.insert', this.state.type, this.state.message, this.state.details, this.state.date, this.state.username);
             this.handleClose();
         }
@@ -117,13 +120,12 @@ export default class AddNoteDialog extends React.Component {
                                 <DateInput
                                 name='date'
                                 placeholder='date'
-                                dateFormat='MMMM D YYYY'
+                                dateFormat='ddd, MMMM D YYYY'
                                 value={this.state.date}
                                 icon={false}
                                 closable={true}
                                 animation='none'
                                 onChange={this.handleDateChange}
-                                disable={disabledDates}
                                 style={{ border: 'none' }}
                                 />
                             </Form.Group>

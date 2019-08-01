@@ -6,14 +6,14 @@ export const Notes = new Mongo.Collection('notesList');
 if (Meteor.isServer) {
     // console.log("this is server");
     Meteor.publish('notes', function notesPublication(){
-        return Notes.find();
+        return Notes.find({}, { sort: { date: 1 } });
     });
 }
 
 Meteor.methods({
     'notes.insert'(type, message, details, date, username) {
         console.log('username: ' + this.userId.username);
-        if(!Meteor.user().username) {
+        if (!Meteor.user().username) {
             throw new Meteor.Error('not-authorized');
         }
 

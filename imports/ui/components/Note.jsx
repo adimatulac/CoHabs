@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+const moment = require('moment');
 
 export default class Note extends React.Component {
     constructor(props) {
@@ -68,10 +69,12 @@ export default class Note extends React.Component {
 
     render() {
         const { open } = this.state;
+        console.log('date prop: ' + this.props.note.date);
+        console.log('note: ' + JSON.stringify(this.props.note));
         return (
                 <Card style={{ textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
                     <div style={{ padding: '14px' }}>
-                        <Card.Meta>{ this.props.note.date }</Card.Meta>
+                        <Card.Meta>{ moment(this.props.note.date).format('ddd, MMMM D YYYY') }</Card.Meta>
                     </div>
                     <Card.Content>
                         <Card.Header style={{ paddingTop: '0', paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
@@ -84,7 +87,7 @@ export default class Note extends React.Component {
                     </Card.Content>
                     <Modal size={'mini'} open={open} onClose={this.handleClose}>
                         <Modal.Header style={{ textAlign: 'left', fontSize: '16px', color: '#4D4D4D' }}>
-                            { this.props.note.date }
+                            { moment(this.props.note.date).format('ddd, MMMM D YYYY') }
                         </Modal.Header>
                     <Modal.Content>
                         <Modal.Description>

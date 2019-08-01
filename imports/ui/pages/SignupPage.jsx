@@ -31,7 +31,7 @@ export default class SignupPage extends React.Component {
                     });
                 } else {
                     console.log('success');
-                    this.props.history.push('/login');
+                    this.props.history.push('/register-group');
                 }
             });
         }
