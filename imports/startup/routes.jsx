@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // containers
 import AppContainer from '../ui/containers/AppContainer';
+import RegisterGroupContainer from '../ui/containers/RegisterGroupContainer';
 
 // pages
 import SignupPage from '../ui/pages/SignupPage';
@@ -14,7 +15,7 @@ export const renderRoutes = () => (
         <div>
             <Route path="/login" component={LoginPage}/>
             <Route path="/signup" component={SignupPage}/>
-            <Route path="/register-group" component={RegisterGroupPage}/>
+            <Route path="/register-group" component={RegisterGroupContainer}/>
             <Route exact={true} path="/" component={AppContainer}/>
         </div>
     </Router>

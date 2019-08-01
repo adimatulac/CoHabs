@@ -18,6 +18,7 @@ export default class MainDashboard extends React.Component {
         let currentUser = this.props.currentUser;
         let userDataAvailable = (currentUser !== undefined);
         let loggedIn = (currentUser && userDataAvailable);
+        console.log('current user: ' + JSON.stringify(this.props.currentUser));
         return (
             <Grid celled='internally' stackable>
                 <Grid.Column width={12}>
