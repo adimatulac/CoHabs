@@ -13,9 +13,16 @@ if (Meteor.isServer) {
             }
         }, { sort: { date: 1 } });
     });
+
     Meteor.publish('groupTest', function groupsPublication(){
         return GroupsTest.find({});
     });
+
+    Meteor.publish('users', function usersPublication(){
+        console.log('Meteor users: ' + Meteor.users().find({}));
+        return Meteor.users().find({});
+    })
+
 }
 
 Meteor.methods({
@@ -56,10 +63,22 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
 
-        GroupsTest.insert({
+        var groupID = GroupsTest.insert({
             name: groupName,
             members: [userid]
+        }, function(err, mongoID) {
+            return mongoID;
         });
+
+        Meteor.users.update({_id: userid}, {
+            $set: {
+                'profile.group': groupID
+            }
+        });
+
+        console.log('group id from server: ' + groupID);
+
+        // return groupID;
     },
     'groupTest.update'(groupid, userid) {
         GroupsTest.update(
