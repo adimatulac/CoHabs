@@ -1,13 +1,13 @@
 import { withTracker } from 'meteor/react-meteor-data';
 import MainDashboard from '../pages/MainDashboard';
-import { Groups } from '../../api/groups';
+import { GroupsTest } from '../../api/notes';
 
 const MainContainer = withTracker(({ params }) => {
     const currentUser = Meteor.user();
-    Meteor.subscribe('groups');
+    Meteor.subscribe('groupTest');
     return {
         currentUser,
-        groups: Groups.find().fetch(),
+        groups: GroupsTest.find().fetch(),
     };
 })(MainDashboard);
 

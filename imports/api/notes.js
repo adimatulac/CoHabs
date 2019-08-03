@@ -38,21 +38,32 @@ Meteor.methods({
     'notes.remove'(noteId){
         Notes.remove(noteId);
     },
-    'groupTest.insert'(id, groupName, userid) {
+    // 'groupTest.insert'(id, groupName, userid) {
+    //     console.log('group name: ' + groupName);
+    //     if (!userid) {
+    //         throw new Meteor.Error('not-authorized');
+    //     }
+
+    //     GroupsTest.insert({
+    //         id: id,
+    //         name: groupName,
+    //         members: [userid]
+    //     });
+    // },
+    'groupTest.insert'(groupName, userid) {
         console.log('group name: ' + groupName);
         if (!userid) {
             throw new Meteor.Error('not-authorized');
         }
 
         GroupsTest.insert({
-            id: id,
             name: groupName,
             members: [userid]
         });
     },
     'groupTest.update'(groupid, userid) {
         GroupsTest.update(
-            { name: groupid },
+            { _id: groupid },
             { $push: { members: userid } }
         );
     },

@@ -32,7 +32,7 @@ export default class RegisterGroupPage extends React.Component {
                 }
             });
             // TODO: insert user to new group
-            Meteor.call('groupTest.insert', customID, groupName, Meteor.userId());
+            Meteor.call('groupTest.insert', groupName, Meteor.userId());
             this.props.history.push('/');
             // this.props.history.push('/login');
         }
