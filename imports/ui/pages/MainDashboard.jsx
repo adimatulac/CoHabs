@@ -5,6 +5,7 @@ import MenuBar from '../components/MenuBar';
 import { Grid } from 'semantic-ui-react';
 import NotesBoard from '../components/NotesBoard';
 import GroupBoard from '../components/GroupBoard';
+import PieChart from '../components/Pie Chart';
 
 export default class MainDashboard extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export default class MainDashboard extends React.Component {
                     <NotesBoard />
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <GroupBoard />
+                    <PieChart />
                 </Grid.Column>
             </Grid>
         );

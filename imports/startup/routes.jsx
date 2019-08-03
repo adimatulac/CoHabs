@@ -13,10 +13,10 @@ import RegisterGroupPage from '../ui/pages/RegisterGroupPage';
 export const renderRoutes = () => (
     <Router>
         <div>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/signup" component={SignupPage}/>
-            <Route path="/register-group" component={RegisterGroupContainer}/>
-            <Route exact={true} path="/" component={AppContainer}/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            <Route path="/register-group" component={RegisterGroupContainer} />
+            <Route exact={true} path="/" component={AppContainer} />
         </div>
     </Router>
 );
