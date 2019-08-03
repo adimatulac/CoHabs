@@ -6,6 +6,7 @@ import { Grid } from 'semantic-ui-react';
 import NotesBoard from '../components/NotesBoard';
 import GroupBoard from '../components/GroupBoard';
 import PieChart from '../components/Pie Chart';
+import BillsBoard from '../components/BillsBoard';
 
 export default class MainDashboard extends React.Component {
     constructor(props) {
@@ -22,11 +23,11 @@ export default class MainDashboard extends React.Component {
         console.log('current user: ' + JSON.stringify(this.props.currentUser));
         return (
             <Grid celled='internally' stackable>
-                <Grid.Column width={12}>
+                <Grid.Column width={11}>
                     <NotesBoard />
                 </Grid.Column>
-                <Grid.Column width={4}>
-                    <PieChart />
+                <Grid.Column width={5}>
+                    <BillsBoard />
                 </Grid.Column>
             </Grid>
         );

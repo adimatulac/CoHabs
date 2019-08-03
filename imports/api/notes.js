@@ -3,18 +3,22 @@ import { Meteor } from 'meteor/meteor';
 
 export const Notes = new Mongo.Collection('notesList');
 export const GroupsTest = new Mongo.Collection('groupTest');
+export const Bills = new Mongo.Collection('billsList');
 
 if (Meteor.isServer) {
     // console.log("this is server");
-    Meteor.publish('notes', function notesPublication(){
+    Meteor.publish('notes', function notesPublication() {
         return Notes.find({
             date: {
                 $gte: new Date()
             }
         }, { sort: { date: 1 } });
     });
-    Meteor.publish('groupTest', function groupsPublication(){
+    Meteor.publish('groupTest', function groupsPublication() {
         return GroupsTest.find({});
+    });
+    Meteor.publish('bills', function billsPublication() {
+        return Bills.find({});
     });
 }
 
@@ -34,10 +38,19 @@ Meteor.methods({
             username: username,
         });
     },
-    
-    'notes.remove'(noteId){
+
+    'notes.remove'(noteId) {
         Notes.remove(noteId);
     },
+
+    'bills.insert'(type, amount, date) {
+        Bills.insert({
+            type: type,
+            amount: amount,
+            date: date,
+        });
+    },
+
     // 'groupTest.insert'(id, groupName, userid) {
     //     console.log('group name: ' + groupName);
     //     if (!userid) {
