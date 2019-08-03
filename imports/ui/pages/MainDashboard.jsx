@@ -19,16 +19,22 @@ export default class MainDashboard extends React.Component {
         let userDataAvailable = (currentUser !== undefined);
         let loggedIn = (currentUser && userDataAvailable);
         console.log('current user: ' + JSON.stringify(this.props.currentUser));
-        return (
-            <Grid celled='internally' stackable>
-                <Grid.Column width={12}>
-                    <NotesBoard />
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    <GroupBoard />
-                </Grid.Column>
-            </Grid>
-        );
+        if (loggedIn) {
+            return (
+                <Grid celled='internally' stackable>
+                    <Grid.Column width={12}>
+                        <NotesBoard />
+                    </Grid.Column>
+                    <Grid.Column width={4}>
+                        <GroupBoard />
+                    </Grid.Column>
+                </Grid>
+            );
+        } else {
+            return (
+                this.props.history.push('/login')
+            );
+        }
     }
 }
 

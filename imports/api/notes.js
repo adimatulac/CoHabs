@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'notes.insert'(type, message, details, date, username) {
+    'notes.insert'(type, message, details, date, username, group) {
         console.log('username: ' + this.userId.username);
         // TODO: if the groupname already exists -> warning ! 
         if (!Meteor.user().username) {
@@ -39,6 +39,7 @@ Meteor.methods({
             details: details,
             date: date,
             username: username,
+            group: group,
         });
     },
     
@@ -85,6 +86,12 @@ Meteor.methods({
             { _id: groupid },
             { $push: { members: userid } }
         );
+
+        Meteor.users.update({_id: userid}, {
+            $set: {
+                'profile.group': groupid
+            }
+        });
     },
 });
 
