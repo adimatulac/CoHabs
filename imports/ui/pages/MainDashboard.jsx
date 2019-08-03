@@ -30,10 +30,6 @@ export default class MainDashboard extends React.Component {
                     </Grid.Column>
                 </Grid>
             );
-        } else {
-            return (
-                this.props.history.push('/login')
-            );
         }
     }
 }
