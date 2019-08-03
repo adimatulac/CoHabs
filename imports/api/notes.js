@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
 export const Notes = new Mongo.Collection('notesList');
+export const GroupsTest = new Mongo.Collection('groupTest');
 
 if (Meteor.isServer) {
     // console.log("this is server");
@@ -12,11 +13,15 @@ if (Meteor.isServer) {
             }
         }, { sort: { date: 1 } });
     });
+    Meteor.publish('groupTest', function groupsPublication(){
+        return GroupsTest.find({});
+    });
 }
 
 Meteor.methods({
     'notes.insert'(type, message, details, date, username) {
         console.log('username: ' + this.userId.username);
+        // TODO: if the groupname already exists -> warning ! 
         if (!Meteor.user().username) {
             throw new Meteor.Error('not-authorized');
         }
@@ -32,6 +37,24 @@ Meteor.methods({
     
     'notes.remove'(noteId){
         Notes.remove(noteId);
+    },
+    'groupTest.insert'(id, groupName, userid) {
+        console.log('group name: ' + groupName);
+        if (!userid) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        GroupsTest.insert({
+            id: id,
+            name: groupName,
+            members: [userid]
+        });
+    },
+    'groupTest.update'(groupid, userid) {
+        GroupsTest.update(
+            { name: groupid },
+            { $push: { members: userid } }
+        );
     },
 });
 
