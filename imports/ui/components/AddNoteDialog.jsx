@@ -35,7 +35,7 @@ export default class AddNoteDialog extends React.Component {
             type: '',
             date: '',
             username: '',
-            groupid: ''
+            groupid: Meteor.user().profile.group
         }
     }
 
@@ -86,7 +86,7 @@ export default class AddNoteDialog extends React.Component {
         console.log('note date: ' + this.state.date);
         if (this.state.message.trim() && this.state.type.trim()) {
             // TODO: on submit re-render notes list to re-order by date???
-            Meteor.call('notes.insert', this.state.type, this.state.message, this.state.details, this.state.date, this.state.username);
+            Meteor.call('notes.insert', this.state.type, this.state.message, this.state.details, this.state.date, this.state.username, this.state.groupid);
             this.handleClose();
         }
     }
