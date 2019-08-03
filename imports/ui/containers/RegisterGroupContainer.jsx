@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 const RegisterGroupContainer = withTracker(({ params }) => {
     const currentUser = Meteor.user();
     Meteor.subscribe('groupTest');
+    Meteor.subscribe('users');
     // probably not the right way to do this
     return {
         currentUser,
