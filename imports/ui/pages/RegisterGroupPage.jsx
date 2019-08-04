@@ -24,7 +24,7 @@ export default class RegisterGroupPage extends React.Component {
         } else {
             // TODO: create custom group ID and insert group id property to current user
             // TODO: insert user to new group
-            Meteor.call('groupTest.insert', groupName, Meteor.userId());
+            Meteor.call('groups.insert', groupName, Meteor.userId());
             this.props.history.push('/');
         }
     }
@@ -40,7 +40,7 @@ export default class RegisterGroupPage extends React.Component {
             console.log('user id: ' + Meteor.userId() + ' ' + Meteor.user().username);
             console.log('group id: ' + groupID);
             // TODO: create group and insert group id property to current user
-            Meteor.call('groupTest.update', groupID, Meteor.userId());
+            Meteor.call('groups.update', groupID, Meteor.userId());
             this.props.history.push('/');
             // this.props.history.push('/login');
         }

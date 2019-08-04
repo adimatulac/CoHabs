@@ -16,7 +16,7 @@ export default class User extends React.Component {
                             <FontAwesomeIcon icon={faUserCircle} size='lg' color='grey' style={{ marginLeft: 'auto' }} />
                         </Grid.Column>
                     </Grid>
-                    <Card.Meta textAlign='left'>@{ this.props.user.username }</Card.Meta>
+                    <Card.Meta textAlign='left'>@{ this.props.user }</Card.Meta>
                     <Card.Description textAlign='left'>some extra profile thing</Card.Description>
                 </Card.Content>
             </Card>

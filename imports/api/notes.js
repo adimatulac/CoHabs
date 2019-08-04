@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
 export const Notes = new Mongo.Collection('notesList');
-export const GroupsTest = new Mongo.Collection('groupTest');
+export const Groups = new Mongo.Collection('groupList');
 
 if (Meteor.isServer) {
     // console.log("this is server");
@@ -14,14 +14,14 @@ if (Meteor.isServer) {
         }, { sort: { date: 1 } });
     });
 
-    Meteor.publish('groupTest', function groupsPublication(){
-        return GroupsTest.find({});
+    Meteor.publish('group', function groupsPublication(){
+        return Groups.find({});
     });
 
-    Meteor.publish('users', function usersPublication(){
-        console.log('Meteor users: ' + Meteor.users().find({}));
-        return Meteor.users().find({});
-    })
+    // Meteor.publish('users', function usersPublication(){
+    //     console.log('Meteor users: ' + Meteor.users().find({}));
+    //     return Meteor.users().find({});
+    // });
 
 }
 
@@ -46,25 +46,13 @@ Meteor.methods({
     'notes.remove'(noteId){
         Notes.remove(noteId);
     },
-    // 'groupTest.insert'(id, groupName, userid) {
-    //     console.log('group name: ' + groupName);
-    //     if (!userid) {
-    //         throw new Meteor.Error('not-authorized');
-    //     }
-
-    //     GroupsTest.insert({
-    //         id: id,
-    //         name: groupName,
-    //         members: [userid]
-    //     });
-    // },
-    'groupTest.insert'(groupName, userid) {
+    'groups.insert'(groupName, userid) {
         console.log('group name: ' + groupName);
         if (!userid) {
             throw new Meteor.Error('not-authorized');
         }
 
-        var groupID = GroupsTest.insert({
+        var groupID = Groups.insert({
             name: groupName,
             members: [userid]
         }, function(err, mongoID) {
@@ -81,8 +69,8 @@ Meteor.methods({
 
         // return groupID;
     },
-    'groupTest.update'(groupid, userid) {
-        GroupsTest.update(
+    'groups.update'(groupid, userid) {
+        Groups.update(
             { _id: groupid },
             { $push: { members: userid } }
         );

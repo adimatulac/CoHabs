@@ -30,6 +30,10 @@ export default class MainDashboard extends React.Component {
                     </Grid.Column>
                 </Grid>
             );
+        } else {
+            return (
+                <div>   "hello" </div>
+            );
         }
     }
 }
