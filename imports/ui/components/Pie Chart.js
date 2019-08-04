@@ -21,8 +21,8 @@ class PieChart extends Component {
 				indexLabel: "{label} - {y}",
 				dataPoints: [
 					{ y: this.props.bills.amount / 3, label: "Angelli" },
-					{ y: this.props.bills.amount / 3, label: "Jason" },
-					{ y: this.props.bills.amount / 3, label: "Jess" },
+					{ y: 500 / 3, label: "Jason" },
+					{ y: 500, label: "Jess" },
 
 				]
 			}]
