@@ -43,11 +43,12 @@ Meteor.methods({
         Notes.remove(noteId);
     },
 
-    'bills.insert'(type, amount, date) {
+    'bills.insert'(type, amount, date, groupid) {
         Bills.insert({
             type: type,
             amount: amount,
             date: date,
+            groupid: groupid,
         });
     },
 

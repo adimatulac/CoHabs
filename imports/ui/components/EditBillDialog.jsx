@@ -57,7 +57,8 @@ export default class EditBillDialog extends React.Component {
         this.setState({
             amount: '',
             type: '',
-            date: ''
+            date: '',
+            groupid: ''
         });
     };
 
@@ -83,8 +84,8 @@ export default class EditBillDialog extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log('bill date: ' + this.state.date);
-        if (this.state.message.trim() && this.state.type.trim()) {
-            Meteor.call('bills.insert', this.state.type, this.state.amount, this.state.date);
+        if (this.state.amount.trim() && this.state.type.trim()) {
+            Meteor.call('bills.insert', this.state.type, this.state.amount, this.state.date, this.state.groupid);
             this.handleClose();
         }
     }

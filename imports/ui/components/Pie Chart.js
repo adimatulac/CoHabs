@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+
 class PieChart extends Component {
 	render() {
 		const options = {
@@ -17,13 +18,12 @@ class PieChart extends Component {
 				showInLegend: "true",
 				legendText: "{label}",
 				indexLabelFontSize: 16,
-				indexLabel: "{label} - {y}%",
+				indexLabel: "{label} - {y}",
 				dataPoints: [
-					{ y: 20, label: "Angelli" },
-					{ y: 20, label: "Jason" },
-					{ y: 20, label: "Jess" },
-					{ y: 20, label: "JJ" },
-					{ y: 20, label: "April" }
+					{ y: this.props.bills.amount / 3, label: "Angelli" },
+					{ y: this.props.bills.amount / 3, label: "Jason" },
+					{ y: this.props.bills.amount / 3, label: "Jess" },
+
 				]
 			}]
 		}
