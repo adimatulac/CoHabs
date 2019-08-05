@@ -6,11 +6,8 @@ import { Groups } from '../../api/notes'
 
 export default class GroupBoardHeader extends React.Component {
     render() {
-        Meteor.subscribe('group');
-        console.log(Meteor.user().profile.group);
-        console.log(Groups.find({_id: Meteor.user().profile.group}).fetch()[0]);
-        let group = Groups.find({_id: Meteor.user().profile.group}).fetch()[0];
-        if(group !== undefined) {
+        console.log("groupboardHeaer" + JSON.stringify(this.props.groups));
+        if (this.props.groups.length !== 0) {
         return (
             <Container style={{ marginTop: '14px' }}>
                 <Grid columns={2}>
@@ -21,7 +18,7 @@ export default class GroupBoardHeader extends React.Component {
                         <AddUserDialog />
                     </Grid.Column> 
                     <Grid.Column textAlign='left' style={{ paddingTop: '0' }}>
-                        <Label color='teal'>{group.name}</Label>
+                        <Label color='teal'>{this.props.groups[0].name}</Label>
                     </Grid.Column>
                 </Grid>
             </Container>

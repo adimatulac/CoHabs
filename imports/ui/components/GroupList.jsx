@@ -10,15 +10,15 @@ export default class GroupList extends React.Component {
     
     render() {
         // Meteor.subscribe('users');
-        Meteor.subscribe('group');
+        //Meteor.subscribe('group');
         // console.log(Meteor.user().profile.group);
         // console.log("this.props is " + JSON.stringify(Groups.find({_id: Meteor.user().profile.group}).fetch()));
-        let groupArray = Groups.find({_id: Meteor.user().profile.group}).fetch();
-        let group  = groupArray[0];
+        // let groupArray = Groups.find({_id: Meteor.user().profile.group}).fetch();
+        //let group  = groupArray[0];
         // console.log("member is: " + JSON.stringify(group));
         // let members = group.members;
-        if (group === undefined) {
-
+        console.log(this.props);
+        if (this.props.groups.length === 0) {
             return (
                 <div style={{ width: '100%', padding: '40px' }}>
                     <Message style={{ width: '200px', margin: 'auto' }}>
@@ -30,11 +30,9 @@ export default class GroupList extends React.Component {
             return (
                 <Container style={{ paddingTop: '20px' }}>
                     <Card.Group doubling stackable centered itemsPerRow={1}>
-                        {group.members.map(user => {
-                            // console.log("the user is " + user);
-                            // console.log("the user object is " + JSON.stringify(Meteor.users.find({_id: user}).fetch()));
+                        {this.props.groups[0].members.map(user => {
                             return (
-                                <User user={ user}  />
+                                <User user={user} key={user} />
                             );
                         })}
                     </Card.Group>
