@@ -15,10 +15,11 @@ export default class MainDashboard extends React.Component {
     }
 
     render() {
+        Meteor.subscribe('users');
         let currentUser = this.props.currentUser;
         let userDataAvailable = (currentUser !== undefined);
         let loggedIn = (currentUser && userDataAvailable);
-        console.log('current user: ' + JSON.stringify(this.props.currentUser));
+        // console.log('current user: ' + JSON.stringify(this.props.currentUser));
         if (loggedIn) {
             return (
                 <Grid celled='internally' stackable>
@@ -32,7 +33,7 @@ export default class MainDashboard extends React.Component {
             );
         } else {
             return (
-                this.props.history.push('/login')
+                <div>   "hello" </div>
             );
         }
     }
