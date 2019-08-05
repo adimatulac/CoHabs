@@ -9,12 +9,13 @@ export default class GroupList extends React.Component {
     }
     
     render() {
+        // Meteor.subscribe('users');
         Meteor.subscribe('group');
-        console.log(Meteor.user().profile.group);
-        console.log("this.props is " + JSON.stringify(Groups.find({_id: Meteor.user().profile.group}).fetch()));
+        // console.log(Meteor.user().profile.group);
+        // console.log("this.props is " + JSON.stringify(Groups.find({_id: Meteor.user().profile.group}).fetch()));
         let groupArray = Groups.find({_id: Meteor.user().profile.group}).fetch();
         let group  = groupArray[0];
-        console.log("member is: " + JSON.stringify(group));
+        // console.log("member is: " + JSON.stringify(group));
         // let members = group.members;
         if (group === undefined) {
 
@@ -30,8 +31,10 @@ export default class GroupList extends React.Component {
                 <Container style={{ paddingTop: '20px' }}>
                     <Card.Group doubling stackable centered itemsPerRow={1}>
                         {group.members.map(user => {
+                            // console.log("the user is " + user);
+                            // console.log("the user object is " + JSON.stringify(Meteor.users.find({_id: user}).fetch()));
                             return (
-                                <User user={ user } />
+                                <User user={ user}  />
                             );
                         })}
                     </Card.Group>

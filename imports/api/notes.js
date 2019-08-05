@@ -18,10 +18,9 @@ if (Meteor.isServer) {
         return Groups.find({});
     });
 
-    // Meteor.publish('users', function usersPublication(){
-    //     console.log('Meteor users: ' + Meteor.users().find({}));
-    //     return Meteor.users().find({});
-    // });
+    Meteor.publish('users', function usersPublication(){
+        return Meteor.users.find({});
+    });
 
 }
 
