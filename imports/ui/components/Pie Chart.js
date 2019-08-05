@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
+import { Meteor } from 'meteor/meteor';
+import { Bills } from '../../api/notes';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
-class PieChart extends Component {
+class PieChart extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
+		Meteor.subscribe('bills');
+		let bills = Bills.find({}).fetch();
+		console.log(Bills.find({}).fetch());
 		const options = {
 			exportEnabled: true,
 			animationEnabled: true,
@@ -20,7 +30,7 @@ class PieChart extends Component {
 				indexLabelFontSize: 16,
 				indexLabel: "{label} - {y}",
 				dataPoints: [
-					{ y: this.props.bills.amount / 3, label: "Angelli" },
+					{ y: 500 / 3, label: "Angelli" },
 					{ y: 500 / 3, label: "Jason" },
 					{ y: 500, label: "Jess" },
 
