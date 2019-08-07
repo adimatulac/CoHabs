@@ -1,0 +1,7 @@
+{
+   
+    "env": {
+      "MAIL_URL": "smtp://apikey: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@smtp.sendgrid.net:465"
+    },
+ 
+  }

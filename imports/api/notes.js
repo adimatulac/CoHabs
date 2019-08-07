@@ -1,11 +1,14 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
+import { Email } from 'meteor/email'
 
 export const Notes = new Mongo.Collection('notesList');
 export const Groups = new Mongo.Collection('groupList');
 
 if (Meteor.isServer) {
+    //process.env.MAIL_URL="smtp://apikey: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@smtp.sendgrid.net:465/";
     // console.log("this is server");
+    process.env.MAIL_URL="smtps://cohabsinvite%40gmail.com:coHabs92@smtp.gmail.com:465/"
     Meteor.publish('notes', function notesPublication(){
         return Notes.find({
             date: {
@@ -80,6 +83,16 @@ Meteor.methods({
             }
         });
     },
+    'sendEmail'(to, from, subject, text) {
+    // Make sure that all arguments are strings.
+        // check([to, from, subject, text], [String]);
+
+    // Let other method calls from the same client start running, without
+    // waiting for the email sending to complete.
+        this.unblock();
+
+        Email.send({ to, from, subject, text });
+    }
 });
 
 
