@@ -4,6 +4,8 @@ import { Accounts } from 'meteor/accounts-base';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import MenuBar from '../components/MenuBar';
 
+const uniqid = require('uniqid');
+
 export default class SignupPage extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,8 @@ export default class SignupPage extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let username = document.getElementById('signup-username').value;
+        let fname = document.getElementById('signup-fname').value;
+        let lname = document.getElementById('signup-lname').value;
         let passwordPri = document.getElementById('signup-password-pri').value;
         let passwordSec = document.getElementById('signup-password-sec').value;
         if (passwordPri !== passwordSec) {
@@ -23,7 +27,7 @@ export default class SignupPage extends React.Component {
                 error: 'Passwords don\'t match'
             });
         } else {
-            Accounts.createUser({username: username, password: passwordPri}, (err) => {
+            Accounts.createUser({username: username, password: passwordPri, profile: {fname: fname, lname: lname} }, (err) => {
                 if (err) {
                     console.log('error');
                     this.setState({
@@ -49,6 +53,10 @@ export default class SignupPage extends React.Component {
                     </Header>
                     <Message attached>Fill out the form below to sign up for a new account.</Message>
                     <Form id='login-form' className='attached fluid segment' size='large' onSubmit={this.handleSubmit}>
+                            <Form.Group widths='equal'>
+                                <Form.Input type='text' id='signup-fname' fluid placeholder='first name' />
+                                <Form.Input type='text' id='signup-lname' fluid placeholder='last name' />
+                            </Form.Group>
                             <Form.Field>
                                 <input type='text' id='signup-username' placeholder='username'></input>
                             </Form.Field>

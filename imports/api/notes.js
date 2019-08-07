@@ -45,6 +45,7 @@ Meteor.methods({
     'notes.remove'(noteId){
         Notes.remove(noteId);
     },
+
     'groups.insert'(groupName, userid) {
         console.log('group name: ' + groupName);
         if (!userid) {
@@ -68,6 +69,7 @@ Meteor.methods({
 
         // return groupID;
     },
+
     'groups.update'(groupid, userid) {
         Groups.update(
             { _id: groupid },

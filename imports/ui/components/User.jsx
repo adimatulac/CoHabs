@@ -19,14 +19,13 @@ export default class User extends React.Component {
                 <Card.Content>
                     <Grid columns={2}>
                         <Grid.Column width={12} textAlign='left'>
-                            <h4>{ Meteor.users.find({_id: this.props.user}).fetch()[0].username } { Meteor.users.find({_id: this.props.user}).fetch()[0].username }</h4>
+                            <h4>{ Meteor.users.find({_id: this.props.user}).fetch()[0].profile.fname } { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.lname }</h4>
                         </Grid.Column>
                         <Grid.Column width={4} textAlign='right'>
                             <FontAwesomeIcon icon={faUserCircle} size='lg' color='grey' style={{ marginLeft: 'auto' }} />
                         </Grid.Column>
                     </Grid>
                     <Card.Meta textAlign='left'>@ { Meteor.users.find({_id: this.props.user}).fetch()[0].username }</Card.Meta>
-                    <Card.Description textAlign='left'>some extra profile thing</Card.Description>
                 </Card.Content>
             </Card>
         )
