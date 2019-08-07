@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faGlassMartiniAlt } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
 
 export default class AddUserDialog extends React.Component {
@@ -50,6 +50,9 @@ export default class AddUserDialog extends React.Component {
         e.preventDefault();
         if (this.state.email.trim()) {
             console.log(this.state.email);
+            Meteor.call('sendEmail',this.state.email,'coHabs@gmail.com', "Let's Join CoHabs!", 
+            "Hi! " + Meteor.user().username + " send you an invitation to coHabs. Use the code : " + Meteor.user().profile.group + " to join the group"
+            + "go to coHabs.meteroapp.com :)");
             this.handleClose();
         }
     }
