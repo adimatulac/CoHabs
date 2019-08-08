@@ -5,9 +5,8 @@ export default class GroupList extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
-        console.log(this.props);
         if (this.props.groups.length === 0) {
             return (
                 <div style={{ width: '100%', padding: '40px' }}>

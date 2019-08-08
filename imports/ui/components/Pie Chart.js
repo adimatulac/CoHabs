@@ -14,6 +14,8 @@ class PieChart extends React.Component {
 
 	render() {
 
+		Meteor.subscribe('users');
+
 		let chartTitle = 'loading';
 
 		if (this.props.type !== undefined) {
@@ -24,31 +26,42 @@ class PieChart extends React.Component {
 
 		let amount = 3;
 		if (bills.length !== 0) {
-			// console.log("this.props.bills: " + JSON.stringify(this.props.bills));
-			// console.log("this.props.type: " + this.props.type);
 			let currentBill = this.props.bills.filter(bill => {
-				// console.log("bill type is: " + bill.type);
 				return bill.type === this.props.type
 			});
-
-			// console.log('current bill: ' + JSON.stringify(currentBill));
-
 			if (currentBill[0] !== undefined) {
 				amount = currentBill[0].amount;
 			}
 		}
 
-		// console.log('should say rent:' + this.props.type);
-		// console.log('bills props: ' + this.props.bills.rent);
-		// console.log(Bills.find({}).fetch());
+		let groupMembersArray = [];
 
-		// let groupMembersArray = [];
+		let dataPoints = [];
 
-		// if (this.props.groups.members !== undefined) {
-		// 	groupMembersArray = this.props.groups.members;
-		// 	console.log('group members array: ' + groupMembersArray);
+		if (this.props.groups[0] !== undefined) {
+			groupMembersArray = this.props.groups[0].members;
+			console.log('group members array: ' + groupMembersArray);
 
-		// }
+			groupMembersArray.forEach(function (userID) {
+
+				if (Meteor.users.find({ _id: userID }).fetch()[0] !== undefined) {
+					let userName = Meteor.users.find({ _id: userID }).fetch()[0].profile.fname;
+
+					console.log(Meteor.users.find().fetch());
+					console.log('userName: ' + JSON.stringify(userName));
+					console.log('userID: ' + userID);
+
+					if (userName !== undefined) {
+						const currentData = {};
+						currentData["label"] = userName;
+						currentData["y"] = Math.ceil(amount / 3);
+						dataPoints.push(currentData);
+					};
+				}
+
+
+			});
+		}
 
 		const options = {
 			exportEnabled: true,
@@ -59,18 +72,12 @@ class PieChart extends React.Component {
 			data: [{
 				type: "pie",
 				startAngle: 75,
-				toolTipContent: "<b>{label}</b>: {y}%",
+				toolTipContent: "<b>{label}</b>: {y}",
 				showInLegend: "true",
 				legendText: "{label}",
 				indexLabelFontSize: 16,
 				indexLabel: "{label} - {y}",
-				dataPoints: [
-					{ y: Math.ceil(amount / 3), label: "Angelli" },
-					{ y: Math.ceil(amount / 3), label: "Jason" },
-					{ y: Math.ceil(amount / 3), label: "Jess" },
-
-
-				]
+				dataPoints: dataPoints
 			}]
 		}
 
