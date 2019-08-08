@@ -55,6 +55,21 @@ Meteor.methods({
         Notes.remove(noteId);
     },
 
+    'notes.update'(noteId, user){
+        Notes.update({_id: noteId}, {
+            $push: {
+                helpers: user
+            }
+        });
+    },
+
+    'notes.removeFromRequest'(noteId, user){
+        Notes.update({_id: noteId}, {
+            $pull: { 
+                helpers: user
+            }
+        });
+    },
 
     'bills.insert'(type, amount, date, groupid) {
         Bills.insert({
@@ -64,20 +79,6 @@ Meteor.methods({
             groupid: groupid,
         });
     },
-
-    // 'groupTest.insert'(id, groupName, userid) {
-    //     console.log('group name: ' + groupName);
-    //     if (!userid) {
-    //         throw new Meteor.Error('not-authorized');
-    //     }
-
-    //     GroupsTest.insert({
-    //         id: id,
-    //         name: groupName,
-    //         members: [userid]
-    //     });
-    // },
-    
 
     'groups.insert'(groupName, userid) {
 
@@ -100,9 +101,8 @@ Meteor.methods({
         });
 
         console.log('group id from server: ' + groupID);
-
-        // return groupID;
     },
+
     'groups.update'(groupid, userid) {
         Groups.update(
             { _id: groupid },

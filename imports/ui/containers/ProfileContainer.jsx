@@ -1,9 +1,9 @@
 import React from 'react';
-import MainContainer from './MainContainer';
 import { Meteor } from 'meteor/meteor';
 import MenuBarContainer from './MenuBarContainer';
+import ProfileInfoContainer from './ProfileInfoContainer';
 
-export default class AppContainer extends React.Component {
+export default class ProfileContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.getMeteorData();
@@ -55,7 +55,7 @@ export default class AppContainer extends React.Component {
         return (
             <div>
                 <MenuBarContainer onLogout={this.logout} onProfileRedirect={this.redirectToProfile} onDashboardRedirect={this.redirectToDashboard} />
-                <MainContainer />
+                <ProfileInfoContainer />
             </div>
         );
     }

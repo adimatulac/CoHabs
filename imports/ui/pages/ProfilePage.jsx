@@ -1,11 +1,9 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
-import NotesBoard from '../components/NotesBoard';
-import GroupBoard from '../components/GroupBoard';
-import PieChart from '../components/Pie Chart';
-import BillsBoard from '../components/BillsBoard';
+import ProfileNotesBoard from '../components/ProfileNotesBoard';
+import AcceptedRequestsContainer from '../containers/AcceptedRequestsContainer';
 
-export default class MainDashboard extends React.Component {
+export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,11 +20,10 @@ export default class MainDashboard extends React.Component {
             return (
                 <Grid celled='internally' stackable>
                     <Grid.Column width={12}>
-                        <NotesBoard />
+                        <ProfileNotesBoard />
                     </Grid.Column>
                     <Grid.Column width={4}>
-                      <BillsBoard />
-                      <GroupBoard />
+                        <AcceptedRequestsContainer />
                     </Grid.Column>
                 </Grid>
             );
