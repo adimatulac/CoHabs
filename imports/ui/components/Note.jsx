@@ -3,7 +3,7 @@ import { Card, Header, Modal, Button, Popup, Label, Icon } from 'semantic-ui-rea
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Meteor } from 'meteor/meteor';
 const moment = require('moment');
 
 export default class Note extends React.Component {
@@ -14,14 +14,11 @@ export default class Note extends React.Component {
         this.handleClose = this.handleClose.bind(this);
         this.getColour = this.getColour.bind(this);
         this.handleAcceptRequest = this.handleAcceptRequest.bind(this);
+        this.handleRemoveFromRequest = this.handleRemoveFromRequest.bind(this);
         this.userExists = this.userExists.bind(this);
 
         this.state = {
-            open: false,
-            helpers: [
-                {_id: 1, username: 'hellojess'},
-                {_id: 2, username: 'jasonkimchi'}
-            ]
+            open: false
         }
     }
 
@@ -38,20 +35,23 @@ export default class Note extends React.Component {
     }
 
     handleAcceptRequest = () => {
-        if (!this.userExists()) {
-            this.setState(state => {
-                const helpers = state.helpers.concat({_id: 3, username: 'angellid'});
-                return {
-                    helpers
-                }
-            });
+        if (!this.userExists() || this.props.note.helpers === undefined) {
+            Meteor.call('notes.update', this.props.note._id, Meteor.user());
         }
     }
 
+    handleRemoveFromRequest = () => {
+        Meteor.call('notes.removeFromRequest', this.props.note._id, Meteor.user());
+    }
+
     userExists = () => {
-        return this.state.helpers.some(h => {
-            return h.username === Meteor.user().username
-        });
+        if (this.props.note.helpers !== undefined) {
+            if (this.props.note.helpers.length !== 0) {
+                return this.props.note.helpers.some(h => {
+                    return h.username === Meteor.user().username
+                });
+            }
+        }
     }
 
     getColour(type) {
@@ -92,14 +92,14 @@ export default class Note extends React.Component {
                             <Header textAlign='left' style={{ marginBottom: '0' }}>{this.props.note.message}</Header>
                             <p style={{ color: '#8A8A8A' }}>@{this.props.note.username}</p>
                             <p>{this.props.note.details}</p>
-                            { this.state.helpers.length !== 0 && this.props.note.type === 'request' ? 
-                            this.state.helpers.map(helper => {
+                            { this.props.note.helpers !== undefined && this.props.note.type === 'request' ? 
+                            this.props.note.helpers.map(helper => {
                                 if (helper.username === Meteor.user().username) {
                                     return (
                                     // TODO: fix 'x' button for own label
                                     <Label key={helper._id}>
                                         {helper.username}
-                                        <Icon name='delete' />
+                                        <Icon name='delete' onClick={this.handleRemoveFromRequest} />
                                     </Label>
                                     )
                                 } else {

@@ -1,26 +1,12 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { Button } from '@material-ui/core';
+import { Menu, Dropdown, Icon } from 'semantic-ui-react';
 
 export default class MenuBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: ''
-        };
-        
-        this.logout = this.logout.bind(this);
-    }
-
-    logout(e) {
-        e.preventDefault();
-        Meteor.logout( (err) => {
-            if (err) {
-                console.log(err.reason);
-            } else {
-                this.props.history.push('/login');
-            }
-        });
+        }
     }
 
     render() {
@@ -31,11 +17,23 @@ export default class MenuBar extends React.Component {
         if (loggedIn) {
             return (
                 <Menu className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
-                    <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white' }}>CoHabs</Menu.Item>
-                    <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.username}!</h4>
-                    <Menu.Item>
-                        <Button style={{ color: 'white', fontWeight: 'bold' }} onClick={this.props.onLogout}>Logout</Button>
-                    </Menu.Item>
+                    <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white', marginRight: 'auto' }}>CoHabs</Menu.Item>
+                    <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.profile.fname}!</h4>
+                    <Menu.Menu position='right'>
+                        <Dropdown style={{ color: 'white', fontWeight: 'bold' }} item simple icon='bars' direction='right'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={this.props.onDashboardRedirect} style={{ textAlign: 'right' }}>
+                                    <p style={{ fontWeight: 'bold' }}>Dashboard</p>
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={this.props.onProfileRedirect} style={{ textAlign: 'right' }}>
+                                    <p style={{ fontWeight: 'bold' }}>Profile</p>
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={this.props.onLogout} style={{ textAlign: 'right' }}>
+                                    <p style={{ fontWeight: 'bold' }}>LOGOUT</p>
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Menu>
                 </Menu>
             );
         } else {

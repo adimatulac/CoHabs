@@ -6,16 +6,14 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 export default class User extends React.Component {
     
     render() {
-        // Meteor.subscribe('users');
-        //console.log(Meteor.users.find().fetch());
-        //console.log("now im in user" + JSON.stringify(Meteor.users.find({_id: this.props.user}).fetch()));
         if (Meteor.users.find({_id: this.props.user}).fetch()[0] === undefined) {
-        return (
-            <div> nothing </div>
-        )}
+            return (
+                <div> nothing </div>
+            )
+        }
         else {  
-        // console.log("now im in user" + Meteor.users.find({_id: this.props.user}).fetch()[0].username);
-         return (<Card>
+         return (
+            <Card>
                 <Card.Content>
                     <Grid columns={2}>
                         <Grid.Column width={12} textAlign='left'>
@@ -25,7 +23,7 @@ export default class User extends React.Component {
                             <FontAwesomeIcon icon={faUserCircle} size='lg' color='grey' style={{ marginLeft: 'auto' }} />
                         </Grid.Column>
                     </Grid>
-                    <Card.Meta textAlign='left'>@ { Meteor.users.find({_id: this.props.user}).fetch()[0].username }</Card.Meta>
+                    <Card.Meta textAlign='left'>@{ Meteor.users.find({_id: this.props.user}).fetch()[0].username }</Card.Meta>
                 </Card.Content>
             </Card>
         )

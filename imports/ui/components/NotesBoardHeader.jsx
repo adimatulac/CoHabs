@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Label, Button } from 'semantic-ui-react';
+import { Container, Grid, Label, Button, Dropdown } from 'semantic-ui-react';
 import AddNoteDialog from './AddNoteDialog';
 
 export default class NotesBoardHeader extends React.Component {
@@ -16,11 +16,15 @@ export default class NotesBoardHeader extends React.Component {
                     </Grid.Column>  
                 </Grid>
                 <Container textAlign='left' style={{ paddingTop: '14px' }}>
-                        <Button size='mini' color='grey' style={{ fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('')}>All</Button>
-                        <Button size='mini' style={{ backgroundColor: '#5CC0FF', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('event')}>Events</Button>
-                        <Button size='mini' style={{ backgroundColor: '#FF5B5B', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('request')}>Requests</Button>
-                        <Button size='mini' style={{ backgroundColor: '#FFEC55', fontSize: '0.9rem', fontWeight: '700', padding: '.5833em .833em' }} onClick={() => this.props.onFilter('reminder')}>Reminders</Button>
-                </Container> 
+                    <Dropdown text='Filter by Type' icon='filter' floating labeled button className='icon'>
+                        <Dropdown.Menu>
+                            <Dropdown.Item label={{ color: 'grey', empty: true, circular: true }} text='All' onClick={() => this.props.onFilter('')} />
+                            <Dropdown.Item label={{ color: 'blue', empty: true, circular: true }} text='Events' onClick={() => this.props.onFilter('event')} />
+                            <Dropdown.Item label={{ color: 'red', empty: true, circular: true }} text='Requests' onClick={() => this.props.onFilter('request')} />
+                            <Dropdown.Item label={{ color: 'yellow', empty: true, circular: true }} text='Reminders' onClick={() => this.props.onFilter('reminder')} />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Container>
             </Container>
         );
     }

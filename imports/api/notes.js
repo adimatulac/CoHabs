@@ -46,6 +46,22 @@ Meteor.methods({
         Notes.remove(noteId);
     },
 
+    'notes.update'(noteId, user){
+        Notes.update({_id: noteId}, {
+            $push: {
+                helpers: user
+            }
+        });
+    },
+
+    'notes.removeFromRequest'(noteId, user){
+        Notes.update({_id: noteId}, {
+            $pull: { 
+                helpers: user
+            }
+        });
+    },
+
     'groups.insert'(groupName, userid) {
         console.log('group name: ' + groupName);
         if (!userid) {
@@ -66,8 +82,6 @@ Meteor.methods({
         });
 
         console.log('group id from server: ' + groupID);
-
-        // return groupID;
     },
 
     'groups.update'(groupid, userid) {
