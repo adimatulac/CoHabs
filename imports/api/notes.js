@@ -121,6 +121,7 @@ Meteor.methods({
             }
         });
     },
+    
     'sendEmail'(to, from, subject, text) {
     // Make sure that all arguments are strings.
         // check([to, from, subject, text], [String]);

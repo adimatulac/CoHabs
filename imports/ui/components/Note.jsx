@@ -106,9 +106,8 @@ export default class Note extends React.Component {
                             <p>{this.props.note.details}</p>
                             { this.props.note.helpers !== undefined && this.props.note.type === 'request' ? 
                             this.props.note.helpers.map(helper => {
-                                if (helper.username === Meteor.user().username) {
+                                if (helper._id === Meteor.user()._id) {
                                     return (
-                                    // TODO: fix 'x' button for own label
                                     <Label key={helper._id}>
                                         {helper.username}
                                         <Icon name='delete' onClick={this.handleRemoveFromRequest} />
