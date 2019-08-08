@@ -79,17 +79,26 @@ Meteor.methods({
                 amount: amount,
                 date: date,
                 groupid: groupid,
+                unpaidMembers: Groups.find({ _id: Meteor.user().profile.group }).fetch()[0].members,
+                paidMembers: [],
             });
         } else {
             Bills.update({ type: type, groupid: groupid }, {
                 $set: {
-                    type: type,
                     amount: amount,
                     date: date,
-                    groupid: groupid,
-                }
+                    unpaidMembers: Groups.find({ _id: Meteor.user().profile.group }).fetch()[0].members,
+                    paidMembers: [],
+                },
             });
         }
+    },
+
+    'bills.updatePaidMember'(type, groupid, userId) {
+        Bills.update({ type: type, groupid: groupid }, {
+            $push: { paidMembers: userId },
+            $pull: { unpaidMembers: userId }
+        });
     },
 
     'notes.edit'(noteId) {

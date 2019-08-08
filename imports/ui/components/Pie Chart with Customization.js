@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 import { Meteor } from 'meteor/meteor';
 import { Bills, Notes } from '../../api/notes';
+const moment = require('moment');
+
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -16,23 +18,30 @@ class PieChartWithCustomization extends Component {
 		Meteor.subscribe('users');
 
 		let chartTitle = 'loading';
-
-		if (this.props.type !== undefined) {
-			chartTitle = this.props.type;
-		}
-
 		let bills = this.props.bills;
-
+		let propType = this.props.type;
 		let amount = 3;
 		let dueDate = 0;
+		let paid = "";
+		let paidMembers = [];
+		let unpaidMembers = [];
+
 		if (bills.length !== 0) {
 			let currentBill = this.props.bills.filter(bill => {
 				return bill.type === this.props.type
 			});
 			if (currentBill[0] !== undefined) {
 				amount = currentBill[0].amount;
-				dueDate = JSON.stringify(currentBill[0].date);
+				dueDate = moment(currentBill[0].date).format('ddd, MMMM D YYYY');
+				paidMembers = currentBill[0].paidMembers;
+				console.log("paid members" + paidMembers);
+				unpaidMembers = currentBill[0].unpaidMembers;
+				console.log("unpaid members" + unpaidMembers);
 			}
+		}
+
+		if (this.props.type !== undefined) {
+			chartTitle = this.props.type;
 		}
 
 		let groupMembersArray = [];
@@ -47,22 +56,30 @@ class PieChartWithCustomization extends Component {
 
 				if (Meteor.users.find({ _id: userID }).fetch()[0] !== undefined) {
 					let userName = Meteor.users.find({ _id: userID }).fetch()[0].profile.fname;
+					let userId = Meteor.users.find({ _id: userID }).fetch()[0]._id;
 
 					console.log(Meteor.users.find().fetch());
 					console.log('userName: ' + JSON.stringify(userName));
 					console.log('userID: ' + userID);
+					if (unpaidMembers.includes(userId)) {
+						if (userName !== undefined) {
+							const currentData = {};
+							currentData["label"] = userName;
+							// if (paidMembers.includes(userId)) currentData["label"] = "PAID -" + userName;
 
-					if (userName !== undefined) {
-						const currentData = {};
-						currentData["label"] = userName;
-						currentData["y"] = Math.ceil(amount / 3);
-						dataPoints.push(currentData);
-					};
+							currentData["y"] = Math.ceil(amount / groupMembersArray.length);
+							//if (paidMembers.includes(userId)) currentData["y"] = 0;
+
+							dataPoints.push(currentData);
+						};
+					}
 				}
 
 
 			});
 		}
+
+
 
 		const options = {
 			theme: "light2",
@@ -74,18 +91,23 @@ class PieChartWithCustomization extends Component {
 			},
 			data: [{
 				type: "pie",
-				showInLegend: true,
+				showInLegend: false,
 				legendText: "{label}",
-				toolTipContent: "{label}: <strong>{y}</strong>",
-				indexLabel: "{y}",
+				toolTipContent: "{label}: <strong>${y}</strong>",
+				// indexLabel: "{label} - ${y}" + paid,
+				indexLabelFontSize: 16,
+				indexLabelFontColor: "white",
 				indexLabelPlacement: "inside",
 				dataPoints: dataPoints
-			}]
+			}],
+			subtitles: [
+				{ text: "$" + Math.ceil(amount / groupMembersArray.length) + " each" },
+				{ text: "due: " + dueDate },
+			]
 		}
 
 		return (
 			<div>
-				<p> due date: {dueDate}</p>
 				<CanvasJSChart options={options}
 				/* onRef={ref => this.chart = ref} */
 				/>

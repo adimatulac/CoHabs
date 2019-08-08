@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
+
+
 import { DateInput } from 'semantic-ui-calendar-react';
 import { Meteor } from 'meteor/meteor';
 
@@ -19,7 +21,7 @@ const options = [
     { key: 'i', text: 'internet', value: 'internet' },
 ];
 
-export default class EditBillDialog extends React.Component {
+export default class PaidDialog extends React.Component {
     constructor(props) {
         super(props);
 
@@ -56,8 +58,6 @@ export default class EditBillDialog extends React.Component {
     handleClear = () => {
         this.setState({
             amount: '',
-            type: '',
-            date: '',
             groupid: ''
         });
     };
@@ -83,9 +83,8 @@ export default class EditBillDialog extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('bill date: ' + this.state.date);
-        if (this.state.amount.trim() && this.state.type.trim()) {
-            Meteor.call('bills.insertupdate', this.state.type, this.state.amount, this.state.date, Meteor.user().profile.group);
+        if (this.state.type.trim()) {
+            Meteor.call('bills.updatePaidMember', this.state.type, Meteor.user().profile.group, Meteor.user()._id);
             this.handleClose();
         }
     }
@@ -95,11 +94,11 @@ export default class EditBillDialog extends React.Component {
         return (
             <div>
                 <Button onClick={this.handleShow}>
-                    <FontAwesomeIcon icon={faFileInvoiceDollar} />
+                    <FontAwesomeIcon icon={faHandHoldingUsd} />
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>Bills</Modal.Header>
+                    <Modal.Header>Did you pay?</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
@@ -107,32 +106,11 @@ export default class EditBillDialog extends React.Component {
                                     <Form.Select name='type' options={options} placeholder='type' onChange={this.handleSelectChange} />
                                 </Form.Field>
                             </Form.Group>
-                            <Form.Group>
-                                <Form.Field>
-                                    <input name='amount' value={this.state.message} onChange={this.handleChange} placeholder='amount' />
-                                </Form.Field>
-                            </Form.Group>
-                            {/* <Form.Group>
-                                <Form.TextArea name='details' value={this.state.details} placeholder='details' onChange={this.handleChange} />
-                            </Form.Group> */}
-                            <Form.Group>
-                                <DateInput
-                                    name='date'
-                                    placeholder='due date'
-                                    dateFormat='ddd, MMMM D YYYY'
-                                    value={this.state.date}
-                                    icon={false}
-                                    closable={true}
-                                    animation='none'
-                                    onChange={this.handleDateChange}
-                                    style={{ border: 'none' }}
-                                />
-                            </Form.Group>
                         </Form>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Update</Button>
+                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Paid</Button>
                     </Modal.Actions>
                 </Modal>
             </div>
