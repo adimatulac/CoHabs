@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Header, Modal, Button, Popup, Label, Icon } from 'semantic-ui-react';
+import { Card, Header, Modal, Button, Popup, Label, Icon, Grid } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
@@ -72,7 +72,18 @@ export default class Note extends React.Component {
         return (
                 <Card style={{ textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
                     <div style={{ padding: '14px' }}>
-                        <Card.Meta>{ moment(this.props.note.date).format('ddd, MMMM D YYYY') }</Card.Meta>
+                        <Card.Meta>
+                            <Grid columns={2}>
+                                <Grid.Column width={12} style={{ margin: 0 }}>
+                                    { moment(this.props.note.date).format('ddd, MMMM D YYYY') }
+                                </Grid.Column>
+                                { this.props.note.helpers !== undefined && this.props.note.helpers.length !== 0 ? 
+                                    <Grid.Column width={4} textAlign='right'>
+                                        <Icon name='check' />
+                                    </Grid.Column> : ''
+                                }
+                            </Grid>
+                        </Card.Meta>
                     </div>
                     <Card.Content>
                         <Card.Header style={{ paddingTop: '0', paddingLeft: '0', textAlign: 'left', color: '#3D3D3D' }}>{ this.props.note.message }</Card.Header>
