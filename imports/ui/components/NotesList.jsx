@@ -27,12 +27,16 @@ export default class NotesList extends React.Component {
                         { this.props.notesFilter !== '' ? 
                             this.props.notes.filter(note => {
                                 return note.type === this.props.notesFilter
+                            }).sort( function(a, b){
+                                return new Date(a.date) - new Date(b.date);
                             }).map(filteredNote => {
                                 return (
                                     <Note note={ filteredNote } key={filteredNote._id} onDelete={this.onDelete} />
                                 )
                             }) : 
-                            this.props.notes.map(allNote => {
+                            this.props.notes.sort( function(a, b){
+                                return new Date(a.date) - new Date(b.date);
+                            }).map(allNote => {
                                 return (
                                     <Note note={ allNote } key={allNote._id} onDelete={this.onDelete} />
                                 );

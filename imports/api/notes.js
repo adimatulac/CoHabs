@@ -71,6 +71,12 @@ Meteor.methods({
         });
     },
 
+    'notes.edit'(noteId) {
+        Notes.update({_id: noteId}, {
+
+        });
+    },
+
     'bills.insert'(type, amount, date, groupid) {
         Bills.insert({
             type: type,
