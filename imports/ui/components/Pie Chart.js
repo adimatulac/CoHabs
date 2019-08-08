@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 import { Meteor } from 'meteor/meteor';
 import { Bills, Notes } from '../../api/notes';
+
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
@@ -67,6 +68,7 @@ class PieChart extends React.Component {
 					{ y: Math.ceil(amount / 3), label: "Angelli" },
 					{ y: Math.ceil(amount / 3), label: "Jason" },
 					{ y: Math.ceil(amount / 3), label: "Jess" },
+
 
 				]
 			}]

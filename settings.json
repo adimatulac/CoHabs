@@ -1,7 +1,10 @@
 {
     "galaxy.meteor.com": {
         "env": {
-            "MONGO_URL": "mongodb+srv://admin:admin@cluster0-cu0rl.mongodb.net/test?retryWrites=true&w=majority"
+            "MONGO_URL": "mongodb+srv://admin:admin@cluster0-cu0rl.mongodb.net/test?retryWrites=true&w=majority",
+  
+            "MAIL_URL": "smtp://apikey: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@smtp.sendgrid.net:465"
         }
     }
 }
+
