@@ -3,11 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email'
 
 export const Notes = new Mongo.Collection('notesList');
+export const Bills = new Mongo.Collection('billsList');
 export const Groups = new Mongo.Collection('groupList');
 
 if (Meteor.isServer) {
     //process.env.MAIL_URL="smtp://apikey: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@smtp.sendgrid.net:465/";
     // console.log("this is server");
+
     process.env.MAIL_URL="smtps://cohabsinvite%40gmail.com:coHabs92@smtp.gmail.com:465/"
     Meteor.publish('notes', function notesPublication(){
         return Notes.find({
@@ -15,6 +17,10 @@ if (Meteor.isServer) {
                 $gte: new Date()
             }
         }, { sort: { date: 1 } });
+    });
+
+    Meteor.publish('bills', function billsPublication() {
+        return Bills.find({});
     });
 
     Meteor.publish('group', function groupsPublication(){
@@ -44,11 +50,37 @@ Meteor.methods({
             group: group,
         });
     },
-    
-    'notes.remove'(noteId){
+
+    'notes.remove'(noteId) {
         Notes.remove(noteId);
     },
+
+
+    'bills.insert'(type, amount, date, groupid) {
+        Bills.insert({
+            type: type,
+            amount: amount,
+            date: date,
+            groupid: groupid,
+        });
+    },
+
+    // 'groupTest.insert'(id, groupName, userid) {
+    //     console.log('group name: ' + groupName);
+    //     if (!userid) {
+    //         throw new Meteor.Error('not-authorized');
+    //     }
+
+    //     GroupsTest.insert({
+    //         id: id,
+    //         name: groupName,
+    //         members: [userid]
+    //     });
+    // },
+    
+
     'groups.insert'(groupName, userid) {
+
         console.log('group name: ' + groupName);
         if (!userid) {
             throw new Meteor.Error('not-authorized');
