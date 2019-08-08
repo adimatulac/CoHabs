@@ -51,8 +51,7 @@ export default class AddUserDialog extends React.Component {
         if (this.state.email.trim()) {
             console.log(this.state.email);
             Meteor.call('sendEmail',this.state.email,'coHabs@gmail.com', "Let's Join CoHabs!", 
-            "Hi! " + Meteor.user().username + " send you an invitation to coHabs. Use the code : " + Meteor.user().profile.group + " to join the group"
-            + "go to coHabs.meteroapp.com :)");
+            "Hi! " + Meteor.user().username + " sent you an invitation to coHabs. Go to coHabs.meteorapp.com and use the code: " + Meteor.user().profile.group + " to join the group!");
             this.handleClose();
         }
     }

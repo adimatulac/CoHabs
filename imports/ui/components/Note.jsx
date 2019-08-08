@@ -41,6 +41,7 @@ export default class Note extends React.Component {
     }
 
     handleRemoveFromRequest = () => {
+        console.log('removing request');
         Meteor.call('notes.removeFromRequest', this.props.note._id, Meteor.user());
     }
 

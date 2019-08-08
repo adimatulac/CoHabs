@@ -31,14 +31,14 @@ export default class AcceptedRequestsBoard extends React.Component {
                             </Grid.Column> 
                         </Grid>
                     </Container>
-                    <Container style={{ paddingTop: '75px' }}>
-                    <Card.Group doubling stackable itemsPerRow={1}>
-                        { this.props.acceptedNotes.sort( function(a, b){
+                    <Container style={{ paddingTop: '40px' }}>
+                        <Card.Group doubling stackable itemsPerRow={4}>
+                            { this.props.acceptedNotes.sort( function(a, b){
                                 return new Date(a.date) - new Date(b.date);
-                            }).map(note => {
-                                return (
-                                    <Note note={ note } key={note._id} onDelete={this.onDelete} />
-                                );
+                                }).map(note => {
+                                    return (
+                                        <Note note={ note } key={note._id} onDelete={this.onDelete} />
+                                    );
                             })}
                         </Card.Group>
                     </Container>
