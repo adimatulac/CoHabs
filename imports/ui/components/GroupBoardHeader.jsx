@@ -6,7 +6,6 @@ import { Groups } from '../../api/notes'
 
 export default class GroupBoardHeader extends React.Component {
     render() {
-        console.log("groupboardHeaer" + JSON.stringify(this.props.groups));
         if (this.props.groups.length !== 0) {
         return (
             <Container style={{ marginTop: '14px' }}>
