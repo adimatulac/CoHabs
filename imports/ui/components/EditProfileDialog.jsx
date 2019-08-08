@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
 
 export default class EditProfileDialog extends React.Component {

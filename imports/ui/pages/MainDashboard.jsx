@@ -26,7 +26,6 @@ export default class MainDashboard extends React.Component {
                     </Grid.Column>
                     <Grid.Column width={4}>
                       <BillsBoard />
-                      <GroupBoard />
                     </Grid.Column>
                 </Grid>
             );
