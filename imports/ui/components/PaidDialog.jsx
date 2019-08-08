@@ -1,19 +1,12 @@
 import React from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
-
-
-import { DateInput } from 'semantic-ui-calendar-react';
+import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
 
 
 // type = rent, internet, utilities
 // pie charts should equally divide the submitted numeric value into number-of-cohabs pieces
-
-const disabledDates = [
-    new Date()
-];
 
 const options = [
     { key: 'r', text: 'rent', value: 'rent' },
@@ -94,11 +87,18 @@ export default class PaidDialog extends React.Component {
         return (
             <div>
                 <Button onClick={this.handleShow}>
-                    <FontAwesomeIcon icon={faHandHoldingUsd} />
+                    <FontAwesomeIcon icon={faDollarSign} />
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>Did you pay?</Modal.Header>
+                    <Modal.Header>
+                        <Header>
+                            Have you paid already?
+                            <Header.Subheader>
+                                Confirm a payment on your share of the bills.
+                            </Header.Subheader>
+                        </Header>
+                    </Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
@@ -110,7 +110,7 @@ export default class PaidDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Paid</Button>
+                        <Button onClick={this.handleSubmit} color='blue'>Confirm Payment</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

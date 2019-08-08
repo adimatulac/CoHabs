@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 import { Meteor } from 'meteor/meteor';
-import { Bills, Notes } from '../../api/notes';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 

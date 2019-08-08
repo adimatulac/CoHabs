@@ -10,7 +10,7 @@ export default class UserProfile extends React.Component {
             <Container style={{ marginTop: '14px' }}>
                 <UserProfileHeader />
                 <UserProfileInfo />
-                <Divider style={{ paddingTop: '40px' }} />
+                <Divider style={{ paddingTop: '20px' }} />
                 <GroupBoard />
             </Container>
         );

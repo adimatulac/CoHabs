@@ -132,7 +132,7 @@ export default class AddNoteDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Add</Button>
+                        <Button onClick={this.handleSubmit} color='blue'>Add</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

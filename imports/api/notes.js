@@ -34,6 +34,17 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+    'user.update'(userId, fname, lname, phone, email) {
+        Meteor.users.update(userId, {
+            $set: {
+                'profile.fname': fname,
+                'profile.lname': lname,
+                'profile.phone': phone,
+                'profile.email': email
+            }
+        });
+    },
+
     'notes.insert'(type, message, details, date, username, group) {
         console.log('username: ' + this.userId.username);
         // TODO: if the groupname already exists -> warning ! 
@@ -64,9 +75,10 @@ Meteor.methods({
     },
 
     'notes.removeFromRequest'(noteId, user) {
+        console.log('trying to pull from ' + noteId);
         Notes.update({ _id: noteId }, {
             $pull: {
-                helpers: user
+                helpers: { _id: user._id }
             }
         });
     },

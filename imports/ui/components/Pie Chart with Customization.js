@@ -80,8 +80,6 @@ class PieChartWithCustomization extends Component {
 			});
 		}
 
-
-
 		const options = {
 			theme: "light2",
 			animationEnabled: true,

@@ -66,7 +66,7 @@ export default class SignupPage extends React.Component {
                             <Form.Field>
                                 <input type='password' id='signup-password-sec' placeholder='password again'></input>
                             </Form.Field>
-                            <Button fluid size='large' style={{ backgroundColor: '#2196F3', color: 'white' }} onClick={this.handleSubmit}>
+                            <Button fluid size='large' color='blue' onClick={this.handleSubmit}>
                                 Sign up
                             </Button>
                     </Form>
