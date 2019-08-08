@@ -62,7 +62,7 @@ export default class RegisterGroupPage extends React.Component {
                             <Form.Field>
                                 <input type='text' id='group-name' placeholder='group name'></input>
                             </Form.Field>
-                            <Button fluid size='large' style={{ backgroundColor: '#2196F3', color: 'white' }} onClick={this.handleSubmitGroupName}>
+                            <Button fluid size='large' color='blue' onClick={this.handleSubmitGroupName}>
                                 Create group
                             </Button>
                     </Form>
@@ -76,12 +76,12 @@ export default class RegisterGroupPage extends React.Component {
                     <Message attached>
                         Already have a group? Enter your group ID here
                     </Message>
-                    <Form id='login-form' className='attached fluid segment' size='large' onSubmit={this.handleSubmitGroupName}>
+                    <Form id='login-form' className='attached fluid segment' size='large' onSubmit={this.handleSubmitGroupID}>
                         <Form.Group>
                             <Form.Field width='11'>
                                 <input type='text' id='group-id' placeholder='group id'></input>
                             </Form.Field>
-                            <Form.Button width='5' fluid size='large' style={{ backgroundColor: '#2196F3', color: 'white' }} onClick={this.handleSubmitGroupID}>
+                            <Form.Button width='5' fluid size='large' color='blue' onClick={this.handleSubmitGroupID}>
                                 Enter ID
                             </Form.Button>
                         </Form.Group>

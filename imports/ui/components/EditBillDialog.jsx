@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 import { DateInput } from 'semantic-ui-calendar-react';
@@ -99,7 +99,14 @@ export default class EditBillDialog extends React.Component {
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>Bills</Modal.Header>
+                    <Modal.Header>
+                        <Header>
+                            Add a Bill
+                            <Header.Subheader>
+                            Input an amount for the whole household and we'll calculate everyone's share!
+                            </Header.Subheader>
+                        </Header>
+                    </Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
@@ -132,7 +139,7 @@ export default class EditBillDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Update</Button>
+                        <Button onClick={this.handleSubmit} color='blue'>Update Bills</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

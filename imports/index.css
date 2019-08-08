@@ -269,3 +269,11 @@ h6 {
 .field {
   width: 100%
 }
+
+.canvasjs-chart-toolbar {
+  visibility: hidden;
+}
+
+.canvasjs-chart-credit {
+  visibility: hidden;
+}

@@ -47,7 +47,7 @@ export default class LoginPage extends React.Component {
                             <Form.Field>
                                 <input type='password' id='login-password' placeholder='password'></input>
                             </Form.Field>
-                            <Button fluid size='large' style={{ backgroundColor: '#2196F3', color: 'white' }} onClick={this.handleSubmit}>
+                            <Button fluid size='large' color='blue' onClick={this.handleSubmit}>
                                 Log in
                             </Button>
                     </Form>

@@ -14,12 +14,22 @@ export default class EditProfileDialog extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
+        let phone = '';
+        if (Meteor.user().profile.phone !== undefined) {
+            phone = Meteor.user().profile.phone;
+        }
+
+        let email = '';
+        if (Meteor.user().profile.email !== undefined) {
+            email = Meteor.user().profile.email;
+        }
+
         this.state = {
             open: false,
-            fname: '',
-            lname: '',
-            phone: '',
-            email: ''
+            fname: Meteor.user().profile.fname,
+            lname: Meteor.user().profile.lname,
+            phone: phone,
+            email: email
         }
     }
 
@@ -52,15 +62,10 @@ export default class EditProfileDialog extends React.Component {
         });
     };
 
-    // TODO: bug in dropdown menu when using keyboard (repeats all options)
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('changes saved!');
+        Meteor.call('user.update', Meteor.user()._id, this.state.fname, this.state.lname, this.state.phone, this.state.email);
         this.handleClose();
-        // if (this.state.message.trim() && this.state.type.trim()) {
-        //     Meteor.call('notes.insert', this.state.type, this.state.message, this.state.details, this.state.date, this.state.username, this.state.groupid);
-        //     this.handleClose();
-        // }
     }
 
     render() {
@@ -97,7 +102,7 @@ export default class EditProfileDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Save Changes</Button>
+                        <Button onClick={this.handleSubmit} color='blue'>Save Changes</Button>
                     </Modal.Actions>
                 </Modal>
             </div>
