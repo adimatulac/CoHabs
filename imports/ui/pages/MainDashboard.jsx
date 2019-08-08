@@ -21,12 +21,12 @@ export default class MainDashboard extends React.Component {
         if (loggedIn) {
             return (
                 <Grid celled='internally' stackable>
-                    <Grid.Column width={12}>
+                    <Grid.Column width={10}>
                         <NotesBoard />
                     </Grid.Column>
-                    <Grid.Column width={4}>
-                      <BillsBoard />
-                      <GroupBoard />
+                    <Grid.Column width={6}>
+                        <BillsBoard />
+                        <GroupBoard />
                     </Grid.Column>
                 </Grid>
             );

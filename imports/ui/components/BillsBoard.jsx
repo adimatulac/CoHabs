@@ -12,6 +12,7 @@ export default class BillsBoard extends React.Component {
                 {/* <PieChart /> */}
                 <BillsContainer type={'rent'} />
                 <BillsContainer type={'utilities'} />
+                <BillsContainer type={'internet'} />
 
             </Container>
         );
