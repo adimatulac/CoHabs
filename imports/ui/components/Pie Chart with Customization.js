@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 import { Meteor } from 'meteor/meteor';
 import { Bills, Notes } from '../../api/notes';
+import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 const moment = require('moment');
 
 
@@ -87,7 +88,7 @@ class PieChartWithCustomization extends Component {
 			exportFileName: chartTitle,
 			exportEnabled: true,
 			title: {
-				text: chartTitle
+				text: chartTitle,
 			},
 			data: [{
 				type: "pie",
