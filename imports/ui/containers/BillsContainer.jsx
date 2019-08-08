@@ -1,5 +1,5 @@
 import { withTracker } from 'meteor/react-meteor-data';
-import PieChart from '../components/Pie Chart';
+import PieChart from '../components/Pie Chart with Customization';
 import BillsBoard from '../components/BillsBoard';
 import { Bills } from '../../api/notes';
 import { Meteor } from 'meteor/meteor';
