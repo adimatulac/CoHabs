@@ -89,10 +89,11 @@ Meteor.methods({
                     groupid: groupid,
                 }
             });
-        },
-          
+        }
+    },
+
     'notes.edit'(noteId) {
-        Notes.update({_id: noteId}, {
+        Notes.update({ _id: noteId }, {
 
         });
     },
