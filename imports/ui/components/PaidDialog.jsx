@@ -92,8 +92,8 @@ export default class PaidDialog extends React.Component {
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        <Header>
-                            Have you paid already?
+                    Have you paid already?
+                        <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                                 Confirm a payment on your share of the bills.
                             </Header.Subheader>
