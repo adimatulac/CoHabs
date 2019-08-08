@@ -4,7 +4,7 @@ import Note from './Note';
 
 export default class AcceptedRequestsBoard extends React.Component {
     render() {
-        if (this.props.notes.length === 0) {
+        if (this.props.acceptedNotes.length === 0) {
             return (
                 <div>
                     <Container style={{ marginTop: '14px' }}>
