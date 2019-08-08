@@ -72,7 +72,7 @@ class PieChart extends React.Component {
 			data: [{
 				type: "pie",
 				startAngle: 75,
-				toolTipContent: "<b>{label}</b>: {y}%",
+				toolTipContent: "<b>{label}</b>: {y}",
 				showInLegend: "true",
 				legendText: "{label}",
 				indexLabelFontSize: 16,

@@ -14,7 +14,7 @@ export default class BillsBoardHeader extends React.Component {
                         <EditBillDialog />
                     </Grid.Column>
                     <Grid.Column textAlign='left' style={{ paddingTop: '0' }}>
-                        <Label color='teal'>Chingooz</Label>
+                        {/* <Label color='teal'>Chingooz</Label> */}
                     </Grid.Column>
                 </Grid>
             </Container>
