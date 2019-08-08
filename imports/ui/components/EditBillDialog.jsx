@@ -85,7 +85,7 @@ export default class EditBillDialog extends React.Component {
         e.preventDefault();
         console.log('bill date: ' + this.state.date);
         if (this.state.amount.trim() && this.state.type.trim()) {
-            Meteor.call('bills.insert', this.state.type, this.state.amount, this.state.date, this.state.groupid);
+            Meteor.call('bills.insertupdate', this.state.type, this.state.amount, this.state.date, Meteor.user().profile.group);
             this.handleClose();
         }
     }
@@ -99,7 +99,7 @@ export default class EditBillDialog extends React.Component {
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>What's on your mind?</Modal.Header>
+                    <Modal.Header>Bills</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
@@ -132,7 +132,7 @@ export default class EditBillDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Add</Button>
+                        <Button onClick={this.handleSubmit} style={{ backgroundColor: '#2196F3', color: 'white' }}>Update</Button>
                     </Modal.Actions>
                 </Modal>
             </div>
