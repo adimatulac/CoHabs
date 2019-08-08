@@ -6,7 +6,7 @@ const MenuBarContainer = withTracker(({ onLogout }) => {
     return {
         onLogout,
         currentUser
-    };
+    }
 })(MenuBar);
 
 export default MenuBarContainer;
