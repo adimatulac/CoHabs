@@ -100,8 +100,8 @@ export default class EditBillDialog extends React.Component {
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        <Header>
-                            Add a Bill
+                    Add a Bill
+                        <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                             Input an amount for the whole household and we'll calculate everyone's share!
                             </Header.Subheader>
