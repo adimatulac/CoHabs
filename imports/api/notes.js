@@ -64,9 +64,10 @@ Meteor.methods({
     },
 
     'notes.removeFromRequest'(noteId, user) {
+        console.log('trying to pull from ' + noteId);
         Notes.update({ _id: noteId }, {
             $pull: {
-                helpers: user
+                helpers: { _id: user._id }
             }
         });
     },
