@@ -78,7 +78,7 @@ export default class Note extends React.Component {
                                     { moment(this.props.note.date).format('ddd, MMMM D YYYY') }
                                 </Grid.Column>
                                 { this.props.note.helpers !== undefined && this.props.note.helpers.length !== 0 ? 
-                                    <Grid.Column width={4} textAlign='right'>
+                                    <Grid.Column width={4} textAlign='right' style={{ paddingRight: 0 }}>
                                         <Icon name='check' />
                                     </Grid.Column> : ''
                                 }
