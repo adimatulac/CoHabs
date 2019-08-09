@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faGlassMartiniAlt } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
@@ -65,7 +65,14 @@ export default class AddUserDialog extends React.Component {
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>Add a Roomie</Modal.Header>
+                    <Modal.Header>
+                        Add a New Member
+                        <Header style={{ marginTop: '6px' }}>
+                            <Header.Subheader>
+                                Enter their email to send them an invitation.
+                            </Header.Subheader>
+                        </Header>
+                    </Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>

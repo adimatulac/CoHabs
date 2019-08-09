@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
@@ -77,7 +77,14 @@ export default class EditProfileDialog extends React.Component {
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>Edit Your Profile</Modal.Header>
+                    <Modal.Header>
+                        Edit Profile
+                        <Header style={{ marginTop: '6px' }}>
+                            <Header.Subheader>
+                                Update your name and contact information.
+                            </Header.Subheader>
+                        </Header>
+                    </Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group widths='equal'>

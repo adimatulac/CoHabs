@@ -40,7 +40,7 @@ export default class User extends React.Component {
                 <Card.Content>
                     <Grid columns={2}>
                         <Grid.Column width={12} textAlign='left'>
-                            <h4 style={{ color: 'grey' }}>{ Meteor.users.find({_id: this.props.user}).fetch()[0].profile.fname } { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.lname }</h4>
+                            <h4 style={{ color: '#4D4D4D' }}>{ Meteor.users.find({_id: this.props.user}).fetch()[0].profile.fname } { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.lname }</h4>
                         </Grid.Column>
                         <Grid.Column width={4} textAlign='right'>
                             <FontAwesomeIcon icon={faUserCircle} size='lg' color='grey' style={{ marginLeft: 'auto' }} />
@@ -53,7 +53,7 @@ export default class User extends React.Component {
                         <Modal.Header style={{ textAlign: 'left', fontSize: '16px', color: '#4D4D4D' }}>
                             @{ Meteor.users.find({_id: this.props.user}).fetch()[0].username }
                         </Modal.Header>
-                    <Modal.Content textAlign='left'>
+                    <Modal.Content>
                         <Modal.Description>
                             <Header textAlign='left' style={{ marginBottom: '0' }}>
                                 { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.fname + ' ' +
