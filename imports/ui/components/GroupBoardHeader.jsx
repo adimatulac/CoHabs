@@ -8,7 +8,7 @@ export default class GroupBoardHeader extends React.Component {
     render() {
         if (this.props.groups.length !== 0) {
             return (
-                <Container>
+                <div>
                     <Grid columns='equal'>
                         <Grid.Row>
                         <Grid.Column width={12} textAlign='left' style={{ paddingBottom: '0' }}>
@@ -28,7 +28,7 @@ export default class GroupBoardHeader extends React.Component {
                         </Grid.Row>
                         
                     </Grid>
-                </Container>
+                </div>
             )
         }
         else {
