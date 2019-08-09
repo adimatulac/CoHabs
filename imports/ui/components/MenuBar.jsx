@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Button, Sidebar, Segment } from 'semantic-ui-react';
 
 export default class MenuBar extends React.Component {
     constructor(props) {
@@ -20,9 +20,9 @@ export default class MenuBar extends React.Component {
                     <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white', marginRight: 'auto'}}>CoHabs</Menu.Item>
                     <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.profile.fname}!</h4>
                     <Menu.Menu position='right'>
-                        <Dropdown style={{ color: 'white', fontWeight: 'bold' }} item simple icon='bars' direction='right'>
+                        <Dropdown style={{ color: 'white', fontWeight: 'bold' }} floating fluid item simple icon='bars' direction='right' className='button icon'>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={this.props.onDashboardRedirect} style={{ textAlign: 'right' }}>
+                                <Dropdown.Item onClick={this.props.onDashboardRedirect} style={{ textAlign: 'right' }} icon='thumbtack'>
                                     <p style={{ fontWeight: 'bold' }}>Dashboard</p>
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={this.props.onProfileRedirect} style={{ textAlign: 'right' }}>

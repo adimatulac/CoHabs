@@ -66,7 +66,7 @@ Meteor.methods({
         Notes.remove(noteId);
     },
 
-    'notes.update'(noteId, user) {
+    'notes.addHelper'(noteId, user) {
         Notes.update({ _id: noteId }, {
             $push: {
                 helpers: user
@@ -74,11 +74,45 @@ Meteor.methods({
         });
     },
 
-    'notes.removeFromRequest'(noteId, user) {
+    'notes.removeHelper'(noteId, user) {
         console.log('trying to pull from ' + noteId);
         Notes.update({ _id: noteId }, {
             $pull: {
                 helpers: { _id: user._id }
+            }
+        });
+    },
+
+    'notes.addInterested'(noteId, user) {
+        Notes.update({ _id: noteId }, {
+            $push: {
+                interested: user
+            }
+        });
+    },
+
+    'notes.removeInterested'(noteId, user) {
+        console.log('trying to pull from ' + noteId);
+        Notes.update({ _id: noteId }, {
+            $pull: {
+                interested: { _id: user._id }
+            }
+        });
+    },
+
+    'notes.addGoing'(noteId, user) {
+        Notes.update({ _id: noteId }, {
+            $push: {
+                going: user
+            }
+        });
+    },
+
+    'notes.removeGoing'(noteId, user) {
+        console.log('trying to pull from ' + noteId);
+        Notes.update({ _id: noteId }, {
+            $pull: {
+                going: { _id: user._id }
             }
         });
     },
