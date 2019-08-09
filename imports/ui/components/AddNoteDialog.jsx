@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DateInput } from 'semantic-ui-calendar-react';
@@ -99,7 +99,14 @@ export default class AddNoteDialog extends React.Component {
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
-                    <Modal.Header>What's on your mind?</Modal.Header>
+                    <Modal.Header>
+                        What's on your mind?
+                        <Header style={{ marginTop: '6px' }}>
+                            <Header.Subheader>
+                                Leave a note for everyone.
+                            </Header.Subheader>
+                        </Header>
+                    </Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group>
@@ -132,7 +139,7 @@ export default class AddNoteDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Add</Button>
+                        <Button onClick={this.handleSubmit} color='blue'>Add Note</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

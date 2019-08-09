@@ -80,7 +80,7 @@ export default class Note extends React.Component {
                                 </Grid.Column>
                                 { this.props.note.helpers !== undefined && this.props.note.helpers.length !== 0 ? 
                                     <Grid.Column width={4} textAlign='right' style={{ paddingRight: 0 }}>
-                                        <Icon name='check' />
+                                        <Icon name='check' color='red'/>
                                     </Grid.Column> : ''
                                 }
                             </Grid>
@@ -108,14 +108,14 @@ export default class Note extends React.Component {
                             this.props.note.helpers.map(helper => {
                                 if (helper._id === Meteor.user()._id) {
                                     return (
-                                    <Label key={helper._id}>
+                                    <Label key={helper._id} basic color='red'>
                                         {helper.username}
                                         <Icon name='delete' onClick={this.handleRemoveFromRequest} />
                                     </Label>
                                     )
                                 } else {
                                     return (
-                                    <Label key={helper._id}>{helper.username}</Label>
+                                    <Label key={helper._id} basic color='red'>{helper.username}</Label>
                                     )
                                 }
                             }) : '' }

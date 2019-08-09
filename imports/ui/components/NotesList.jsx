@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Container, Card } from 'semantic-ui-react';
+import { Message, Container, Card, Transition } from 'semantic-ui-react';
 import Notes from '../../api/notes';
 import Note from './Note';
 import { Meteor } from 'meteor/meteor';
@@ -40,7 +40,7 @@ export default class NotesList extends React.Component {
                                 return (
                                     <Note note={ allNote } key={allNote._id} onDelete={this.onDelete} />
                                 );
-                            })}
+                            })}            
                     </Card.Group>
                 </Container>
             );
