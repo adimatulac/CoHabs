@@ -3,6 +3,7 @@ import { Grid, Divider } from 'semantic-ui-react';
 import ProfileNotesBoard from '../components/ProfileNotesBoard';
 import AcceptedRequestsContainer from '../containers/AcceptedRequestsContainer';
 import UserProfile from '../components/UserProfile';
+import EventsAttendingContainer from '../containers/EventsAttendingContainer';
 
 export default class ProfilePage extends React.Component {
     constructor(props) {
@@ -24,6 +25,8 @@ export default class ProfilePage extends React.Component {
                         <ProfileNotesBoard />
                         <Divider />
                         <AcceptedRequestsContainer />
+                        <Divider />
+                        <EventsAttendingContainer />
                     </Grid.Column>
                     <Grid.Column width={4}>
                         <UserProfile />
@@ -32,7 +35,9 @@ export default class ProfilePage extends React.Component {
             );
         } else {
             return (
-                <div>"hello"</div>
+                <div>
+                    oops
+                </div>
             );
         }
     }

@@ -15,7 +15,13 @@ export default class Note extends React.Component {
         this.getColour = this.getColour.bind(this);
         this.handleAcceptRequest = this.handleAcceptRequest.bind(this);
         this.handleRemoveFromRequest = this.handleRemoveFromRequest.bind(this);
-        this.userExists = this.userExists.bind(this);
+        this.handleAcceptGoing = this.handleAcceptGoing.bind(this);
+        this.handleRemoveFromGoing = this.handleRemoveFromGoing.bind(this);
+        this.handleAcceptInterested = this.handleAcceptInterested.bind(this);
+        this.handleRemoveFromInterested = this.handleRemoveFromInterested.bind(this);
+        this.userExistsInHelpers = this.userExistsInHelpers.bind(this);
+        this.userExistsInGoing = this.userExistsInGoing.bind(this);
+        this.userExistsInInterested = this.userExistsInInterested.bind(this);
 
         this.state = {
             open: false
@@ -35,20 +41,61 @@ export default class Note extends React.Component {
     }
 
     handleAcceptRequest = () => {
-        if (!this.userExists() || this.props.note.helpers === undefined) {
-            Meteor.call('notes.update', this.props.note._id, Meteor.user());
+        if (!this.userExistsInHelpers() || this.props.note.helpers === undefined) {
+            Meteor.call('notes.addHelper', this.props.note._id, Meteor.user());
         }
     }
 
     handleRemoveFromRequest = () => {
         console.log('removing request');
-        Meteor.call('notes.removeFromRequest', this.props.note._id, Meteor.user());
+        Meteor.call('notes.removeHelper', this.props.note._id, Meteor.user());
     }
 
-    userExists = () => {
+    userExistsInHelpers = () => {
         if (this.props.note.helpers !== undefined) {
             if (this.props.note.helpers.length !== 0) {
                 return this.props.note.helpers.some(h => {
+                    return h.username === Meteor.user().username
+                });
+            }
+        }
+    }
+
+    handleAcceptGoing = () => {
+        if (!this.userExistsInGoing() || this.props.note.going === undefined) {
+            Meteor.call('notes.addGoing', this.props.note._id, Meteor.user());
+        }
+    }
+
+    handleRemoveFromGoing = () => {
+        Meteor.call('notes.removeGoing', this.props.note._id, Meteor.user());
+    }
+
+    userExistsInGoing = () => {
+        if (this.props.note.going !== undefined) {
+            if (this.props.note.going.length !== 0) {
+                return this.props.note.going.some(h => {
+                    return h.username === Meteor.user().username
+                });
+            }
+        }
+    }
+
+    handleAcceptInterested = () => {
+        if (!this.userExistsInInterested() || this.props.note.interested === undefined) {
+            Meteor.call('notes.addInterested', this.props.note._id, Meteor.user());
+        }
+    }
+
+    handleRemoveFromInterested = () => {
+        console.log('removing request');
+        Meteor.call('notes.removeInterested', this.props.note._id, Meteor.user());
+    }
+
+    userExistsInInterested = () => {
+        if (this.props.note.interested !== undefined) {
+            if (this.props.note.interested.length !== 0) {
+                return this.props.note.interested.some(h => {
                     return h.username === Meteor.user().username
                 });
             }
@@ -78,9 +125,16 @@ export default class Note extends React.Component {
                                 <Grid.Column width={12} style={{ margin: 0 }}>
                                     { moment(this.props.note.date).format('ddd, MMMM D YYYY') }
                                 </Grid.Column>
-                                { this.props.note.helpers !== undefined && this.props.note.helpers.length !== 0 ? 
+                                { this.props.note.type === 'request' && this.props.note.helpers !== undefined && this.props.note.helpers.length !== 0 ? 
                                     <Grid.Column width={4} textAlign='right' style={{ paddingRight: 0 }}>
                                         <Icon name='check' color='red'/>
+                                    </Grid.Column> : ''
+                                }
+                                { this.props.note.type === 'event' && this.props.note.going !== undefined && this.props.note.going.length !== 0 ? 
+                                    <Grid.Column width={4} textAlign='right' style={{ paddingRight: 0 }}>
+                                        <Label circular color='blue'>
+                                            {this.props.note.going.length}
+                                        </Label>
                                     </Grid.Column> : ''
                                 }
                             </Grid>
@@ -119,9 +173,29 @@ export default class Note extends React.Component {
                                     )
                                 }
                             }) : '' }
+                            { this.props.note.going !== undefined && this.props.note.type === 'event' ? 
+                            this.props.note.going.map(guest => {
+                                if (guest._id === Meteor.user()._id) {
+                                    return (
+                                    <Label key={guest._id} basic color='blue'>
+                                        {guest.username}
+                                        <Icon name='delete' onClick={this.handleRemoveFromGoing} />
+                                    </Label>
+                                    )
+                                } else {
+                                    return (
+                                    <Label key={guest._id} basic color='blue'>{guest.username}</Label>
+                                    )
+                                }
+                            }) : '' }
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
-                        <Button style={{ backgroundColor: '#2196F3', color: 'white', marginTop: '20px' }} onClick={this.handleAcceptRequest}>Accept Request</Button> : '' }
+                        <Button color='blue' style={{ marginTop: '20px' }} onClick={this.handleAcceptRequest}>Accept Request</Button> : '' }
+                        { this.props.note.type === 'event' ? 
+                        <Button.Group>
+                            <Button color='blue' style={{ marginTop: '20px' }} onClick={this.handleAcceptGoing}>Going</Button>
+                        </Button.Group>
+                         : '' }
                     </Modal.Content>
                     <Modal.Actions>
                         { Meteor.user().username === this.props.note.username ? 
