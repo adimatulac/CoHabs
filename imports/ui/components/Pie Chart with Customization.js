@@ -11,16 +11,21 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 CanvasJS.addColorSet("customColorSet1",
 	[//colorSet Array
-	"#4661EE",
-	"#EC5657",
-	"#1BCDD1",
-	"#8FAABB",
-	"#B08BEB",
-	"#3EA0DD",
-	"#F5A52A",
-	"#23BFAA",
-	"#FAA586",
-	"#EB8CC6",
+	"#ef5350",
+	"#ec407a",
+	"#ab47bc",
+	"#7e57c2",
+	"#5c6bc0",
+	"#42a5f5",
+	"#29b6f6",
+	"#26c6da",
+	"#26a69a",
+	"#66bb6a",
+	"#9ccc65",
+	"#d4e157",
+	"#ffee58",
+	"#ffca28",
+	"#ffa726"
 ]); 
 
 
@@ -57,7 +62,7 @@ class PieChartWithCustomization extends Component {
 		}
 
 		if (this.props.type !== undefined) {
-			chartTitle = this.props.type;
+			chartTitle = this.props.type.charAt(0).toUpperCase() + this.props.type.slice(1);
 		}
 
 		let groupMembersArray = [];
@@ -101,12 +106,22 @@ class PieChartWithCustomization extends Component {
 			theme: "light2",
 			animationEnabled: true,
 			exportFileName: chartTitle,
-			exportEnabled: true,
+			exportEnabled: false,
 			title: {
 				text: chartTitle,
 				fontFamily: 'Open Sans',
-				fontWeight: 'normal',
-				fontSize: 24
+				fontWeight: 'bold',
+				fontSize: 16,
+				fontColor: '#FFFFFF',
+				cornerRadius: 4,
+				backgroundColor: '#2196f3',
+				padding: {
+					top: 9,
+					right: 16,
+					bottom: 0,
+					left: 16
+				},
+				margin: 10
 			},
 			data: [{
 				type: "pie",
@@ -117,12 +132,21 @@ class PieChartWithCustomization extends Component {
 				indexLabelFontSize: 16,
 				indexLabelFontColor: "white",
 				indexLabelPlacement: "inside",
-				dataPoints: dataPoints
+				dataPoints: dataPoints,
+				indexLabelFontFamily: 'Open Sans',
 			}],
 			subtitles: [
-				{ text: "$" + Math.ceil(amount / groupMembersArray.length) + " each" },
-				{ text: "due: " + dueDate },
-			]
+				{ text: "$" + Math.ceil(amount / groupMembersArray.length) + " each", fontFamily: 'Open Sans', fontSize: 16, fontWeight: 'bold' },
+				{ text: "Due: " + dueDate, fontFamily: 'Open Sans', fontSize: 14, fontWeight: 'normal' },
+			],
+			legend: {
+				fontFamily: 'Open Sans'
+			},
+			toolTip: {
+				fontFamily: 'Open Sans',
+				cornerRadius: 4,
+				borderThickness: 3
+			}
 		}
 
 		return (
