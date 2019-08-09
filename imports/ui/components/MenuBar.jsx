@@ -17,7 +17,7 @@ export default class MenuBar extends React.Component {
         if (loggedIn) {
             return (
                 <Menu className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
-                    <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white', marginRight: 'auto' }}>CoHabs</Menu.Item>
+                    <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white'}}>CoHabs</Menu.Item>
                     <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.profile.fname}!</h4>
                     <Menu.Menu position='right'>
                         <Dropdown style={{ color: 'white', fontWeight: 'bold' }} item simple icon='bars' direction='right'>
@@ -38,7 +38,7 @@ export default class MenuBar extends React.Component {
             );
         } else {
             return (
-                <Menu className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
+                <Menu stackable className='fixed fixed-menu-height' style={{ backgroundColor: '#155492' }}>
                     <h3 style={{ margin: 'auto', color: 'white' }}>CoHabs</h3>
                 </Menu>
             );

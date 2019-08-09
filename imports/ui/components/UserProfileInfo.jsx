@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 export default class UserProfileInfo extends React.Component {
     render() {
         return (
-            <Container style={{ paddingTop: '70px', paddingLeft: '20px', paddingRight: '20px' }}>
+            <Container style={{ paddingTop: '70px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px' }}>
                 <Header as='h2'>
                     { Meteor.user().profile.fname + ' ' + Meteor.user().profile.lname }
                     <Header.Subheader>

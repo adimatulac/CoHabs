@@ -17,7 +17,7 @@ export default class GroupList extends React.Component {
             );
         } else {
             return (
-                <Container style={{ paddingTop: '20px' }}>
+                <Container style={{ paddingTop: '40px' }}>
                     <Card.Group doubling stackable centered itemsPerRow={1}>
                         {this.props.groups[0].members.map(user => {
                             return (
