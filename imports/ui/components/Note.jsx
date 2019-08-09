@@ -105,7 +105,7 @@ export default class Note extends React.Component {
     getColour(type) {
         switch (type) {
             case 'event':
-                return '#DBF1FF'
+                return '#E2F9DA'
             case 'request':
                 return '#FFDBDB'
             case 'reminder':
@@ -118,8 +118,8 @@ export default class Note extends React.Component {
     render() {
         const { open } = this.state;
         return (
-                <Card style={{ textAlign: 'left', backgroundColor: this.getColour(this.props.note.type) }} onClick={this.handleShow}>
-                    <div style={{ padding: '14px' }}>
+                <Card style={{ textAlign: 'left' }} onClick={this.handleShow}>
+                    <div style={{ padding: '14px', backgroundColor: this.getColour(this.props.note.type) }}>
                         <Card.Meta>
                             <Grid columns={2}>
                                 <Grid.Column width={12} style={{ margin: 0 }}>
@@ -132,7 +132,7 @@ export default class Note extends React.Component {
                                 }
                                 { this.props.note.type === 'event' && this.props.note.going !== undefined && this.props.note.going.length !== 0 ? 
                                     <Grid.Column width={4} textAlign='right' style={{ paddingRight: 0 }}>
-                                        <Label circular color='blue'>
+                                        <Label circular color='green'>
                                             {this.props.note.going.length}
                                         </Label>
                                     </Grid.Column> : ''
@@ -162,14 +162,14 @@ export default class Note extends React.Component {
                             this.props.note.helpers.map(helper => {
                                 if (helper._id === Meteor.user()._id) {
                                     return (
-                                    <Label key={helper._id} basic color='red'>
+                                    <Label key={helper._id} basic color='blue'>
                                         {helper.username}
                                         <Icon name='delete' onClick={this.handleRemoveFromRequest} />
                                     </Label>
                                     )
                                 } else {
                                     return (
-                                    <Label key={helper._id} basic color='red'>{helper.username}</Label>
+                                    <Label key={helper._id} basic color='blue'>{helper.username}</Label>
                                     )
                                 }
                             }) : '' }
@@ -190,10 +190,10 @@ export default class Note extends React.Component {
                             }) : '' }
                         </Modal.Description>
                         { this.props.note.type === 'request' ? 
-                        <Button color='blue' style={{ marginTop: '20px' }} onClick={this.handleAcceptRequest}>Accept Request</Button> : '' }
+                        <Button className='primary-button' style={{ marginTop: '20px' }} onClick={this.handleAcceptRequest}>Doing the thing</Button> : '' }
                         { this.props.note.type === 'event' ? 
                         <Button.Group>
-                            <Button color='blue' style={{ marginTop: '20px' }} onClick={this.handleAcceptGoing}>Going</Button>
+                            <Button className='primary-button' style={{ marginTop: '20px' }} onClick={this.handleAcceptGoing}>Going</Button>
                         </Button.Group>
                          : '' }
                     </Modal.Content>
@@ -202,7 +202,7 @@ export default class Note extends React.Component {
                         <div>
                             <Popup 
                                 trigger={
-                                    <Button icon>
+                                    <Button icon basic color='red'>
                                         <FontAwesomeIcon icon={faTrashAlt} />
                                     </Button>}
                                 content={

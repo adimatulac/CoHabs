@@ -48,7 +48,7 @@ export default class SignupPage extends React.Component {
                 <MenuBar />
                 <Grid container textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column computer={6} mobile={16}>
-                    <Header as='h2' textAlign='center' style={{ color: '#1971C2' }}>
+                    <Header as='h2' textAlign='center' style={{ color: '#0D47A1' }}>
                         Welcome to CoHabs
                     </Header>
                     <Message attached>Fill out the form below to sign up for a new account.</Message>
@@ -66,7 +66,7 @@ export default class SignupPage extends React.Component {
                             <Form.Field>
                                 <input type='password' id='signup-password-sec' placeholder='password again'></input>
                             </Form.Field>
-                            <Button fluid size='large' color='blue' onClick={this.handleSubmit}>
+                            <Button fluid size='large' className='primary-button' onClick={this.handleSubmit}>
                                 Sign up
                             </Button>
                     </Form>

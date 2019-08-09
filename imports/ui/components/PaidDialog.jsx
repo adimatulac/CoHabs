@@ -86,13 +86,13 @@ export default class PaidDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>
+                <Button size='small' onClick={this.handleShow}>
                     <FontAwesomeIcon icon={faDollarSign} />
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        Confirm a Payment
+                        Confirm a payment
                         <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                                 Update the status on your share of the bills.
@@ -110,7 +110,7 @@ export default class PaidDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Confirm Payment</Button>
+                        <Button onClick={this.handleSubmit} className='primary-button'>Confirm payment</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

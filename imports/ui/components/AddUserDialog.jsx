@@ -64,13 +64,13 @@ export default class AddUserDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>
+                <Button size='small' onClick={this.handleShow}>
                     <FontAwesomeIcon icon={faUserPlus}/>
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        Add a New Member
+                        Add a new member
                         <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                                 Enter their email to send them an invitation.
@@ -88,7 +88,7 @@ export default class AddUserDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Send Link</Button>
+                        <Button onClick={this.handleSubmit} className='primary-button'>Send link</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

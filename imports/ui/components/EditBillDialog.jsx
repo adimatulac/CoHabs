@@ -94,13 +94,13 @@ export default class EditBillDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>
+                <Button size='small' onClick={this.handleShow}>
                     <FontAwesomeIcon icon={faFileInvoiceDollar} />
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        Add a Bill
+                        Add a bill
                         <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                                 Enter the total amount for everyone to split.
@@ -119,9 +119,6 @@ export default class EditBillDialog extends React.Component {
                                     <input name='amount' value={this.state.message} onChange={this.handleChange} placeholder='amount' />
                                 </Form.Field>
                             </Form.Group>
-                            {/* <Form.Group>
-                                <Form.TextArea name='details' value={this.state.details} placeholder='details' onChange={this.handleChange} />
-                            </Form.Group> */}
                             <Form.Group>
                                 <DateInput
                                     name='date'
@@ -139,7 +136,7 @@ export default class EditBillDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Update Bills</Button>
+                        <Button onClick={this.handleSubmit} className='primary-button'>Update bills</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

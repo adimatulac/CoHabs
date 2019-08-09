@@ -72,13 +72,13 @@ export default class EditProfileDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>
+                <Button size='small' onClick={this.handleShow}>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
 
                 <Modal size={'mini'} open={open} onClose={this.handleClose}>
                     <Modal.Header>
-                        Edit Profile
+                        Edit profile
                         <Header style={{ marginTop: '6px' }}>
                             <Header.Subheader>
                                 Update your name and contact information.
@@ -109,7 +109,7 @@ export default class EditProfileDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Save Changes</Button>
+                        <Button onClick={this.handleSubmit} className='primary-button'>Save changes</Button>
                     </Modal.Actions>
                 </Modal>
             </div>
