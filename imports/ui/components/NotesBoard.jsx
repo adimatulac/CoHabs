@@ -22,7 +22,7 @@ export default class NotesBoard extends React.Component {
     render() {
         return (
             <Container>
-                <NotesBoardHeader onFilter={this.onFilter} />
+                <NotesBoardHeader onFilter={this.onFilter} page='dashboard' />
                 <NotesListContainer notesFilter={this.state.type} />
             </Container>
         );

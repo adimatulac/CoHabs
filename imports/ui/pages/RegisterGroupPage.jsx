@@ -52,8 +52,8 @@ export default class RegisterGroupPage extends React.Component {
         return (
             <div>
                 <MenuBar />
-                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid container textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <Grid.Column computer={6} mobile={16}>
                     <Header as='h2' textAlign='center' style={{ color: '#1971C2' }}>
                         Create a new Group or enter your existing Group ID
                     </Header>
