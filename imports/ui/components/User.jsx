@@ -65,7 +65,7 @@ export default class User extends React.Component {
                                     { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.phone !== undefined ? Meteor.users.find({_id: this.props.user}).fetch()[0].profile.phone : 'No phone number entered' }
                                 </Header.Subheader>
                             </Header>
-                            <Header>
+                            <Header style={{ marginTop: 0 }}>
                                 <Header.Subheader style={{ textAlign: 'left' }}>
                                     <Icon name='mail' size='large' color='grey' />
                                     { Meteor.users.find({_id: this.props.user}).fetch()[0].profile.email !== undefined ? Meteor.users.find({_id: this.props.user}).fetch()[0].profile.email : 'No email address entered' }
