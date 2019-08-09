@@ -20,7 +20,7 @@ export default class GroupBoardHeader extends React.Component {
                         </Grid.Row>
                         <Grid.Row>
                         <Grid.Column>
-                            <Label color='blue' size='large' image>
+                            <Label size='large' image className='primary'>
                                 {this.props.groups[0].name}
                                 <Label.Detail>{this.props.groups[0].members.length} members</Label.Detail>
                             </Label>
@@ -42,7 +42,7 @@ export default class GroupBoardHeader extends React.Component {
                             <AddUserDialog />
                         </Grid.Column>
                         <Grid.Column textAlign='left' style={{ paddingTop: '0' }}>
-                            <Label color='blue'>CoHabs</Label>
+                            <Label className='primary'>CoHabs</Label>
                         </Grid.Column>
                     </Grid>
                 </Container>

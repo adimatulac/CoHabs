@@ -54,7 +54,7 @@ export default class RegisterGroupPage extends React.Component {
                 <MenuBar />
                 <Grid container textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column computer={6} mobile={16}>
-                    <Header as='h2' textAlign='center' style={{ color: '#1971C2' }}>
+                    <Header as='h2' textAlign='center' style={{ color: '#0D47A1' }}>
                         Create a new Group or enter your existing Group ID
                     </Header>
                     <Message attached>What do you want to name your group?</Message>
@@ -62,7 +62,7 @@ export default class RegisterGroupPage extends React.Component {
                             <Form.Field>
                                 <input type='text' id='group-name' placeholder='group name'></input>
                             </Form.Field>
-                            <Button fluid size='large' color='blue' onClick={this.handleSubmitGroupName}>
+                            <Button fluid size='large' className='primary-button' onClick={this.handleSubmitGroupName}>
                                 Create group
                             </Button>
                     </Form>
@@ -78,10 +78,10 @@ export default class RegisterGroupPage extends React.Component {
                     </Message>
                     <Form id='login-form' className='attached fluid segment' size='large' onSubmit={this.handleSubmitGroupID}>
                         <Form.Group>
-                            <Form.Field width='11'>
+                            <Form.Field width='10'>
                                 <input type='text' id='group-id' placeholder='group id'></input>
                             </Form.Field>
-                            <Form.Button width='5' fluid size='large' color='blue' onClick={this.handleSubmitGroupID}>
+                            <Form.Button width='6' fluid size='large' className='primary-button' onClick={this.handleSubmitGroupID}>
                                 Enter ID
                             </Form.Button>
                         </Form.Group>

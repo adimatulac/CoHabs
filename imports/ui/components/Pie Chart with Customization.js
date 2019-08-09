@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
+const CanvasJS = CanvasJSReact.CanvasJS;
 import { Meteor } from 'meteor/meteor';
 import { Bills, Notes } from '../../api/notes';
 import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,20 @@ const moment = require('moment');
 
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+CanvasJS.addColorSet("customColorSet1",
+	[//colorSet Array
+	"#4661EE",
+	"#EC5657",
+	"#1BCDD1",
+	"#8FAABB",
+	"#B08BEB",
+	"#3EA0DD",
+	"#F5A52A",
+	"#23BFAA",
+	"#FAA586",
+	"#EB8CC6",
+]); 
 
 
 class PieChartWithCustomization extends Component {
@@ -81,12 +96,17 @@ class PieChartWithCustomization extends Component {
 		}
 
 		const options = {
+			colorSet: "customColorSet1",
+			backgroundColor: '#F7F9FA',
 			theme: "light2",
 			animationEnabled: true,
 			exportFileName: chartTitle,
 			exportEnabled: true,
 			title: {
 				text: chartTitle,
+				fontFamily: 'Open Sans',
+				fontWeight: 'normal',
+				fontSize: 24
 			},
 			data: [{
 				type: "pie",

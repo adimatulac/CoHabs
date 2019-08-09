@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Button, Modal, Form, Header, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DateInput } from 'semantic-ui-calendar-react';
@@ -90,7 +90,7 @@ export default class AddNoteDialog extends React.Component {
         const { open } = this.state;
         return (
             <div>
-                <Button onClick={this.handleShow}>
+                <Button size='small' onClick={this.handleShow}>
                     <FontAwesomeIcon icon={faPlus} />
                 </Button>
 
@@ -135,7 +135,7 @@ export default class AddNoteDialog extends React.Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose}>Cancel</Button>
-                        <Button onClick={this.handleSubmit} color='blue'>Add Note</Button>
+                        <Button onClick={this.handleSubmit} className='primary-button'>Add note</Button>
                     </Modal.Actions>
                 </Modal>
             </div>

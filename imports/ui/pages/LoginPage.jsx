@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Button, Form, Grid, Header, Image, Message, Segment, Container } from 'semantic-ui-react';
 import MenuBar from '../components/MenuBar';
+import indigo from '@material-ui/core/colors/indigo';
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export default class LoginPage extends React.Component {
                 <MenuBar />
                 <Grid container stackable textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                     <Grid.Column computer={6} mobile={16}>
-                        <Header as='h2' textAlign='center' style={{ color: '#1971C2' }}>
+                        <Header as='h2' textAlign='center' style={{ color: '#0D47A1' }}>
                             Log in to your household
                         </Header>
                         <Message attached>Please enter your username and password to continue.</Message>
@@ -47,7 +48,7 @@ export default class LoginPage extends React.Component {
                                 <Form.Field>
                                     <input type='password' id='login-password' placeholder='password'></input>
                                 </Form.Field>
-                                <Button fluid size='large' color='blue' onClick={this.handleSubmit}>
+                                <Button fluid size='large' className='primary-button' onClick={this.handleSubmit}>
                                     Log in
                                 </Button>
                         </Form>

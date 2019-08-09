@@ -10,7 +10,7 @@ export default class EventsAttendingBoard extends React.Component {
                     <Container style={{ marginTop: '14px' }}>
                         <Grid>
                             <Grid.Column textAlign='left' style={{ paddingBottom: '0' }}>
-                                <h2 style={{ color: '#4D4D4D' }}>Events Attending</h2>
+                                <h2 style={{ color: '#4D4D4D' }}>Events attending</h2>
                             </Grid.Column> 
                         </Grid>
                     </Container>
@@ -28,7 +28,7 @@ export default class EventsAttendingBoard extends React.Component {
                     <Container style={{ marginTop: '14px' }}>
                         <Grid>
                             <Grid.Column textAlign='left' style={{ paddingBottom: '0' }}>
-                                <h2 style={{ color: '#4D4D4D' }}>Events Attending</h2>
+                                <h2 style={{ color: '#4D4D4D' }}>Events attending</h2>
                             </Grid.Column> 
                         </Grid>
                     </Container>
