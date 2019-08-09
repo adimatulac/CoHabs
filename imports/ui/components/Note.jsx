@@ -126,9 +126,6 @@ export default class Note extends React.Component {
                     <Modal.Actions>
                         { Meteor.user().username === this.props.note.username ? 
                         <div>
-                            <Button icon>
-                                <FontAwesomeIcon icon={faEdit} />
-                            </Button>
                             <Popup 
                                 trigger={
                                     <Button icon>
@@ -152,5 +149,3 @@ export default class Note extends React.Component {
         );
     }
 }
-
-{/* <Label key={helper._id} content={helper.username} removeIcon={<FontAwesomeIcon icon={faTimes} />} onRemove={() => console.log('removed ' + helper.username)} /> */}
