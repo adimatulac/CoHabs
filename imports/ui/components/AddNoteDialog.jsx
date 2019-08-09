@@ -5,10 +5,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DateInput } from 'semantic-ui-calendar-react';
 import { Meteor } from 'meteor/meteor';
 
-const disabledDates = [
-    new Date()
-];
-
 const options = [
     { key: 'n', text: 'none', value: 'none'},
     { key: 'ev', text: 'event', value: 'event'},
