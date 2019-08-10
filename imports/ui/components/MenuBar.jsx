@@ -20,7 +20,7 @@ export default class MenuBar extends React.Component {
                     <Menu.Item name='brand' style={{ fontWeight: 'bold', color: 'white', marginRight: 'auto'}}>CoHabs</Menu.Item>
                     <h4 style={{ margin: 'auto', color: 'white' }}>Hi, {currentUser.profile.fname}!</h4>
                     <Menu.Menu position='right'>
-                        <Dropdown style={{ color: 'white', fontWeight: 'bold' }} floating fluid item simple icon='bars' direction='right' className='button icon'>
+                        <Dropdown style={{ color: 'white', fontWeight: 'bold' }} fluid item simple icon='bars' direction='right' className='button icon'>
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={this.props.onDashboardRedirect}>
                                     <p style={{ fontWeight: 'bold' }}>Dashboard</p>
