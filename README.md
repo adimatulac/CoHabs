@@ -60,7 +60,7 @@ CoHabs is a web application that aims to address communication of shared events 
 ### Technology
 #### HTML/CSS/JavaScript
 * Semantic UI and custom CSS to style the components and make sure they're mobile-friendly
-* Used Canvas.js library for chart visualization
+* Used CanvasJS library for chart visualization
 #### React
 * React to make the UI components such as the notes and board
 #### Meteor
@@ -80,15 +80,15 @@ CoHabs is a web application that aims to address communication of shared events 
 * Notes functionality, basic as well as extra features such as calls to action
 * User authentication and routing the different views depending on permissions
 #### Jessica Huh
-* Project set-up with Meteor, React and Redux
+* Project set-up with Meteor, React, and Redux
 * Focused on Back-end implementation
 * Connected back-end to front-end
 * Implemented display of members based on the group on the profile page
 * Connected pie chart with MongoDB to render based on users and groups
 #### Jason Kim
-* Project set-up with Meteor, React and Redux
+* Project set-up with Meteor, React, and Redux
 * Set up and connecting external MongoDB to our front-end
-* Used the “canvasjs” library to display our bills in pie chart format that can be updated and re-rendered based on users and groups
+* Used the CanvasJS library to display our bills in pie chart format that can be updated and re-rendered based on users and groups
 * Deployment with Galaxy
  
 ### Challenges and Learning
