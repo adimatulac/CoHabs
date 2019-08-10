@@ -112,9 +112,11 @@ class PieChartWithCustomization extends Component {
 				fontFamily: 'Open Sans',
 				fontWeight: 'bold',
 				fontSize: 16,
-				fontColor: '#FFFFFF',
+				fontColor: '#1A237E',
 				cornerRadius: 4,
-				backgroundColor: '#2196f3',
+				backgroundColor: '#F7F9FA',
+				borderColor: '#1A237E',
+				borderThickness: 2,
 				padding: {
 					top: 9,
 					right: 16,
